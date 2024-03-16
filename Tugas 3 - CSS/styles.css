@@ -1,0 +1,186 @@
+html{
+    box-sizing: content-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+header{
+    align-items: center;
+    vertical-align: middle;
+    margin: 0;
+    background-color: #789461;
+    top:0;
+    padding:2vh 0 ;
+    position: fixed;
+    width: 100vw;
+    z-index: 99;
+}
+header h1{
+    margin: 0;
+    text-align: center;
+    font: 600 33px "Playfair Display", serif;
+}
+.menu-bar{
+    position: fixed;
+    width: 15vw;
+    align-items: center;
+    top: 15vh;
+    height: auto;
+}
+.menu-title{
+    text-align: center;
+    margin: 20px auto 5px auto;
+}
+.menu-lists{
+    list-style: none;
+    margin-top: 0;
+    padding: 10px;
+}
+.menu-list{
+    text-align: center;
+    padding: 10px 0;
+}
+.checked-list{
+    border: 3px solid #50623A ;
+    border-radius: 16px;
+}
+.menu-list:hover{
+    border: 3px solid #789461 ;
+    border-radius: 16px;
+    background-color: #a1b690;
+}
+.content{
+    position: relative;
+    margin-top: 15vh;
+    margin-left: calc((15vw) + 10px);
+}
+.content-title{
+    margin-top: 5vh;
+    text-align: center;
+}
+.card-image{
+    width: calc((84vw/3) - 30px);
+    height: calc((84vw/3) - 30px);
+    flex-shrink: 0;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 16px;
+    align-items: center;
+    position: relative;
+}
+.card-image-main, .card-image-second, .card-image-third{
+    position: absolute;
+    width: calc((84vw/3) - 30px);
+    height: calc((84vw/3) - 30px);
+    flex-shrink: 0;
+    object-fit: cover;
+    margin: auto;
+    border-radius: 16px;
+    align-items: center;
+}
+.card-image-second{
+    opacity: 0;
+    transition: opacity .2s;
+}
+.card-image-third{
+    opacity: 0;
+    transition: opacity 10.5s;
+}
+.card-image:hover .card-image-second{
+    opacity: 1;
+}
+.card-image:hover .card-image-third{
+    opacity: 1;
+}
+.item-cards{
+    position: relative;
+    width: 80vw;
+    top: 0;
+}
+.item-card{
+    padding: 0 10px;
+    width: calc((84vw / 3) - 30px);
+    display: inline-block;
+}
+.card1{
+    position: absolute;
+    top:0
+}
+.card2{
+    position: absolute;
+    left: calc((84vw / 3) - 10px);
+}
+.card3{
+    position: absolute;
+    left: calc((84vw / 3) * 2 - 20px);
+}
+.card-decs{
+    position: relative;
+    padding: 10px;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+.decs1{
+    background-color: #d6c7f4;
+}
+.decs2{
+    background-color: #c2dce9;
+}
+.decs3{
+    background-color: #e7ec9d;
+}
+.card-decs-title{
+    text-align: center;
+}
+.card-decs-par{
+    font-size: 11pt;
+    text-align: justify;
+    text-indent: 20px;
+}
+.card-decs-type{
+    font-size: 12pt;
+    text-align: justify;
+    text-indent: 20px;
+}
+.buy-span{
+    display: inline-block;
+}
+.price-tag{
+    margin: 11px 0;
+    font-weight: 600;
+    font-size: medium;
+    display: inline-block;
+    width: 10vw;
+}
+.buy-button{
+    background-color: #000;
+    width: 7vw;
+    opacity: 50%;
+    padding: 6px;
+    border-radius: 8px;
+    float: right;
+    text-align: center;
+    font-weight: 600;
+    margin:5px 0px 5px calc((84vw / 3) - 20vw - 30px);
+}
+.buy-button p{
+    margin: 0;
+    color: #000;
+}
+.buy-button a{
+    text-decoration: none;
+}
+.buy-button a:hover{
+    color: #50623A;
+}
+.buy-button a:focus{
+    color: #DBE7C9;
+}
+.buy-button a:visited{
+    color: #DBE7C9;
+}
+.add-rectangle{
+    position: relative;
+    height: 5vh;
+}

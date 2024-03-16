@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>XIISAINS1 Survey Form </title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="title">XII SAINS-1 Survey Form</h1>
+    <p id="description">Please fill out every question below with honesty</p>
+    <form id="survey-form">
+      <fieldset class="identity">
+      <label id="name-label" class="identity-label">Your Name: <input type="text" id="name" placeholder="Full Name" class="identity-input" required /></label>
+      <label id="number-label" class="identity-label">Absent number: <input type="number" id="number" placeholder="11" class="identity-input" required min="1" max="36" /></label>
+      <label id="email-label" class="identity-label">Email: <input type="email" id="email" placeholder="youremail@gmail.com" class="identity-input"required /></label>
+      </fieldset>
+      <fieldset class="status">
+        <legend>Are you single now?</legend>
+        <label><input type="radio" name="status" value="single" /> Yes
+        </label>
+        <label><input type="radio" name="status" value="not-single" /> No
+        </label>
+        <label class="the-most"> Who's the most handsome guy in class?
+        <select id="dropdown" class="dropdown">
+          <option value="" >on your honest opinion</option>
+          <option>Geo</option>
+          <option>Tiant</option>
+          <option>Mark</option>
+          <option>Nanda</option>
+        </select>
+        </label>
+        <label class="the-most"> Who's the prettiest girl in class?
+        <select id="dropdown" class="dropdown">
+          <option value="" >on your honest opinion</option>
+          <option value="1" >Grace</option>
+          <option value="2">Shasha</option>
+          <option value="3">Reyda</option>
+          <option value="4">Mila</option>
+        </select>
+        </label>
+      </fieldset>
+      <fieldset class="relationship">
+        <legend>Did you feel okay with the dating guys in the class?</legend>
+        <label><input type="radio" name="status" value="ok" /> Yes
+        </label>
+        <label><input type="radio" name="status" value='not-ok' /> No
+        </label>
+        <legend> Who's the toxic couples in your opinion?</legend>
+        <label class="checkboxs"><input type="checkbox" value="1" /> Tiant and Alisha </label>
+        <label class="checkboxs"><input type="checkbox" value="2" /> Mark and Shae </label>
+        <label class="checkboxs"><input type="checkbox" value="3" /> Jay and Lisa </label>
+        <label class="checkboxs"><input type="checkbox" value="4" /> Matteo and Grace </label>
+        <label class="textarea">Can you share your opinion about healty relationship?:
+          <textarea class="textarea" name="opinion" rows="3" cols="30" placeholder="Imho, I think love relationship should provide commitment ...."></textarea>
+        </label>
+      </fieldset>
+    <input type="submit" id="submit" value="Submit">
+    </form>
+  </body>
+</html>
+<styles>
+body{
+  background-color: #272637;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: arial;
+  padding-top: 50px;
+}
+h1, p {
+  color: #A1DFFF;
+  text-align: center;
+}
+form{
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  max-width: 800px;
+  min-width: 300px;
+  color: #FF7BB0;
+  background-color: #433751;
+}
+
+fieldset{
+  border: none;
+  border-bottom: 1px solid #AD56CD;
+  margin: 20px 0;
+}
+
+.identity{
+  padding: 25px;
+}
+.identity-label, .the-most, .textarea{
+  display: block;
+  margin: 1rem 0;
+}
+.checkboxs{
+  display: block;
+}
+.identity-input, .dropdown, textarea{
+  width: 100%;
+}
+
+.status{
+  padding: 0 25px 40px 25px;
+}
+
+.relationship{
+  padding: 0 25px 40px 25px;
+}
+
+legend{
+  padding: 10px 0 5px 0;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #FF7BB0;
+  border-color: #AD56CD;
+  min-width: 300px;
+  color: white;
+}
+</styles>
+

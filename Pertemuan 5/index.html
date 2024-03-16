@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pertemuan 5</title>
+  </head>
+  <body>
+    <h2 style="text-align: center">Masukkan 3 angka!</h2>
+    <div
+      class="input-box"
+      style="margin: 10px auto; display: flex; align-items: center; justify-content: center;"
+    >
+      <input
+        type="text"
+        id="num1"
+        style="width: 20vw; margin: 20px; height: 100px; text-align: center; vertical-align: middle;"
+      />
+      <input
+        type="text"
+        id="num2"
+        style="width: 20vw; margin: 20px; height: 100px; text-align: center; vertical-align: middle;"
+      />
+      <input
+        type="text"
+        id="num3"
+        style="width: 20vw; margin: 20px; height: 100px; text-align: center; vertical-align: middle;"
+      />
+    </div>
+    <div style=" display: flex; justify-content: center;">
+    <button
+      onclick="showResult()"
+      style="
+        background-color: cornflowerblue;
+        width: 100px;
+        padding: 5px;
+        border-radius: 12px;
+        border: 2px solid black;
+        position: relative;
+        margin: 0 auto;
+      "
+    >
+      Lihat Hasil
+    </button>
+
+    </div>
+    <div id="result-box"  style="text-align: center; visibility: hidden; margin-top: 20px;">
+      <p>Angka Terbesar: <span id="max"></span></p>
+      <p>Angka Terkecil: <span id="min"></span></p>
+      <p>Jumlah Angka: <span id="sum"></span></p>
+    </div>
+    <script>
+      function showResult() {
+        var num1Field = document.getElementById("num1");
+        var num2Field = document.getElementById("num2");
+        var num3Field = document.getElementById("num3");
+        var max_result = document.getElementById("max");
+        var min_result = document.getElementById("min");
+        var sum_result = document.getElementById("sum");
+        var box_result = document.getElementById("result-box");
+
+        var num1 = parseInt(num1Field.value);
+        var num2 = parseInt(num2Field.value);
+        var num3 = parseInt(num3Field.value);
+        var max,
+          min,
+          sum = 0;
+
+        box_result.style.visibility = "visible"
+        
+        if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3)) {
+          if (num1 > num2 && num1 > num3) {
+            max = num1;
+            if (num2 > num3) {
+              min = num3;
+            } else {
+              min = num2;
+            }
+          } else if (num2 > num1 && num2 > num3) {
+            max = num2;
+            if (num1 > num3) {
+              min = num3;
+            } else {
+              min = num1;
+            }
+          } else {
+            max = num3;
+            if (num1 > num2) {
+              min = num2;
+            } else {
+              min = num1;
+            }
+          }
+
+          sum = num1 + num2 + num3;
+
+          max_result.innerText = max;
+          min_result.innerText = min;
+          sum_result.innerText = sum;
+        } else {
+          box_result.innerHTML = "Input tidak valid! Input harus berupa angka!";
+        }
+      }
+    </script>
+  </body>
+</html>
