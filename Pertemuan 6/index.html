@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="main-canvas" width="600px" height="400px" style="margin: 20px auto; border: 1px solid gray; border-radius: 24px; position: absolute; align-items: center; padding: 24px;">
+
+    </canvas>
+    <script>
+        var canvas = document.getElementById("main-canvas");
+        var ctx = canvas.getContext("2d");
+        var ballRadius = 10;
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
+        var dx = 2;
+        var dy = -2;
+        var paddleHeight = 10;
+        var paddleWidth = 75;
+        var paddleX = (canvas.width - paddleWidth) / 2;
+        var rightPressed = false;
+        var leftPressed = false;
+        var itemColumn = 9;
+        var itemRow = 3;
+        var itemWidth = 75;
+        var itemHeight = 20;
+        var itemPadding = 10;
+        var itemOffsetTop = 30;
+        var itemOffsetLeft = 30;
+        var score = 0;
+
+        var items = [];
+        for (var c = 0; c < itemColumn; c++) {
+            items[c] = [];
+            for (var r = 0; r < itemRow; r++) {
+                monsters[c][r] = { x: 0, y: 0, status: 1 };
+            }
+        }
+
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+
+        function keyDownHandler(e) {
+            if (e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = true;
+            }
+            else if (e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = true;
+            }
+        }
+
+        function keyUpHandler(e) {
+            if (e.key == "Right" || e.key == "ArrowRight") {
+                rightPressed = false;
+            }
+            else if (e.key == "Left" || e.key == "ArrowLeft") {
+                leftPressed = false;
+            }
+        }
+
+        // //to create object
+        // ctx.fillStyle = "#2d83e6";
+        
+        // //to draw the rectangle based on coordinate + give the dimension
+        // ctx.fillRect(0, 0, 50, 50);
+        // ctx.fillRect(55, 0, 50, 50);
+        // ctx.fillRect(110, 0, 50, 50);
+        // ctx.fillRect(165, 0, 50, 50);
+
+        // //to draw a line 
+        // ctx.moveTo(300,400);
+        // ctx.lineTo(100,200);
+        // ctx.stroke();
+    </script>
+</body>
+</html>
