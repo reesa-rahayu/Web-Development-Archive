@@ -9,6 +9,14 @@
   <body>
     <div class="main">
       <div id="canvas-container">
+        <div class="top-panel-container" id="top-panel-container">
+            <div class="player-name">
+              Player: <span id="player-name"></span>
+            </div>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="level">Level: <span id="selected-level"></span></div>
+            <div class="lives">Lives:</div>
+        </div>
         <div id="canvas-overlay-container">
             <div id="canvas-overlay-container-start">
                 <h1 id="title">Thief Rabbit Game</h1>
@@ -34,14 +42,6 @@
                   <button type="submit">Start Game</button>
                 </form>
             </div>
-        </div>
-        <div class="top-panel-container">
-          <div class="player-name" id="player-name">
-            Player: <span id="name"></span>
-          </div>
-          <div class="score">Score: <span id="score"></span></div>
-          <div class="level">Level: <span id="level"></span></div>
-          <div class="lives">Lives:</div>
         </div>
         <canvas id="myCanvas" width="540" height="390"></canvas>
       </div>

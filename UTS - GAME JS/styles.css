@@ -102,9 +102,9 @@ button:hover{
 
 .top-panel-container{
 	padding: 12px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	vertical-align: middle;
-	visibility: hidden;
+	display: grid;
+	grid-template-columns: repeat(4, 210px);
+	gap: 20px;
+	justify-content: center;
+	display: none;
 }
