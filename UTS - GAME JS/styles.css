@@ -50,7 +50,7 @@ div.layout {
     align-items: center;
 }
 
-#canvas-overlay-container-start, #canvas-overlay-countdown{
+#canvas-overlay-container-start, #canvas-overlay-countdown, #canvas-overlay-gameover {
 	text-align: center;
 }
 
@@ -106,4 +106,15 @@ button:hover{
 	grid-template-columns: repeat(3, 200px);
 	gap: 20px;
 	justify-content: center;
+	display: none;
 }
+
+#canvas{
+	position: absolute;
+}
+
+#canvas-overlay-gameover{
+	font-size: xx-large;
+	display: none;
+}
+
