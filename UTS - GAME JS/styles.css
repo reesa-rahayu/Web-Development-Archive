@@ -103,10 +103,11 @@ button:hover{
 .top-panel-container{
 	padding: 12px;
 	display: grid;
-	grid-template-columns: repeat(3, 200px);
-	gap: 20px;
+	grid-template-columns: repeat(3, 280px);
+	gap: 25px;
 	justify-content: center;
 	display: none;
+	text-align: center;
 }
 
 #canvas{
