@@ -7,7 +7,7 @@ const countdownOverlay = document.getElementById("canvas-overlay-countdown");
 const topPanel = document.getElementById("top-panel-container");
 const scoreBoard = document.getElementById("score");
 const canvas = document.getElementById('canvas');
-const playerName = document.getElementById('name').value;
+const playerNameInput = document.getElementById('name');
 const selectedLevel = document.getElementById('level').value;
 
 //variables
@@ -22,6 +22,7 @@ let straightBlocks = 0;
 let turnBlocks = 0;
 let speed = 10;
 let score = 0;
+let isLooping = false;
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -94,8 +95,10 @@ form.addEventListener('submit', function(event) {
   event.preventDefault() //prevent load default
 
    //Update player name and level display
-  document.getElementById('player-name').textContent = playerName;
-  document.getElementById('selected-level').textContent = selectedLevel;
+  var playerName = playerNameInput.value;
+  document.getElementById('player-name').innerText = playerName;
+  document.getElementById('selected-level').innerText = selectedLevel;
+  console.log(`playing for ${playerName} on level ${selectedLevel}`)
 
   //update speed
   speed = getSpeed(selectedLevel);
@@ -106,6 +109,7 @@ form.addEventListener('submit', function(event) {
   //Hide game form
   startOverlay.style.display = "none"
 
+  //start game
   startGame()
 })
 
@@ -156,16 +160,10 @@ function createObstacle(offset, i) {
   road.unshift({ o: offset, w: 400, b: tree, e: element });
 }
 
+
 // Drawing the Road and Obstacle
 function showRoad() {
   for (let i = 0; i < road.length; i++) {
-    if (i = 0){
-      ctx.beginPath();
-      ctx.font = '300 62px "Press Start 2P"';
-      ctx.fillStyle = "#858585";
-      ctx.textAlign = 'center';
-      ctx.fillText("\uf04c", 450, 350);
-    }
     if (i > 0) {
         ctx.beginPath();
         ctx.moveTo(road[i].o, i * speed);
@@ -173,6 +171,7 @@ function showRoad() {
         ctx.lineTo(road[i - 1].o, (i * speed) + speed);
         ctx.strokeStyle = "#fdfffe";
         ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(road[i].o + 400, i * speed);
         ctx.lineWidth = 10;
@@ -270,6 +269,7 @@ function showCountDown(){
   //Display countdown overlay
   canvasOverlay.style.display = "flex"
   countdownOverlay.style.display = "flex"
+
   let timeLeft = 3;
   const countdownInterval = setInterval(() => {
     if (timeLeft > 0) {
@@ -278,22 +278,25 @@ function showCountDown(){
     timeLeft--;
     if (timeLeft < 0) {
       clearInterval(countdownInterval);
+      //Hide countdown
+      countdownOverlay.style.display = 'none';
+      //hide overlay
+      canvasOverlay.style.display = "none";
     }
   }, 1000);
 }
 
 function startGame(){
-  //Show countdown
+  //show Sountdown
   showCountDown()
-  //Hide countdown
-  countdownOverlay.style.display = 'none';
-  //hide overlay
-  canvasOverlay.style.display = "none";
-  //Show canvas
-  canvas.style.display = 'flex'
-  //run game
-  gameStarted =  true;
-  gamePlay()
+
+  //Show canvas with delay for countdown
+  setTimeout(() => {
+    canvas.style.display = 'flex';
+    //run game
+    gameStarted = true;
+    gamePlay();
+  }, 3000);
 }
 
 function gamePlay(){
@@ -307,9 +310,13 @@ function gamePlay(){
   car.move();
 
   //Draw Road
-  if(gameStarted){
+  if(isLooping){
     updateRoad();
   }
+  else{
+    isLooping = true;
+  }
+
   showRoad();
 
   //Scoring
@@ -347,6 +354,7 @@ function resetGame() {
     gameStarted = false;
     totalBlocks = 0;
     car = new Car();
-    createRoad()
+    createRoad();
+    showCountDown();
     startGame();
 }
