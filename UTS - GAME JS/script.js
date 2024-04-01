@@ -23,6 +23,7 @@ let turnBlocks = 0;
 let speed = 10;
 let score = 0;
 let isLooping = false;
+let countdown = 3; 
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -90,48 +91,6 @@ let car = new Car();
 //create road and obstacle
 createRoad()
 
-//submit listener
-form.addEventListener('submit', function(event) {
-  event.preventDefault() //prevent load default
-
-   //Update player name and level display
-  var playerName = playerNameInput.value;
-  document.getElementById('player-name').innerText = playerName;
-  document.getElementById('selected-level').innerText = selectedLevel;
-  console.log(`playing for ${playerName} on level ${selectedLevel}`)
-
-  //update speed
-  speed = getSpeed(selectedLevel);
-
-  //Show top panel
-  topPanel.style.display = 'grid';
-
-  //Hide game form
-  startOverlay.style.display = "none"
-
-  //start game
-  startGame()
-})
-
-function getSpeed(level){
-  switch(level) {
-    case "easy":
-      speed = 10;
-      break;
-    case "medium":
-      speed = 15;
-      break;
-    case "hard":
-      speed = 20;
-      break;
-    case "brutal":
-      speed = 25;
-      break;
-    default:
-      speed = 10; 
-  }
-}
-
 //Create Road Array Map
 function createRoad() {
   let total = canvas.height / 10;
@@ -159,7 +118,6 @@ function createObstacle(offset, i) {
   }
   road.unshift({ o: offset, w: 400, b: tree, e: element });
 }
-
 
 // Drawing the Road and Obstacle
 function showRoad() {
@@ -264,6 +222,47 @@ window.addEventListener("keyup", function (e) {
   }
 });
 
+//submit listener
+form.addEventListener('submit', function(event) {
+  event.preventDefault() //prevent load default
+
+   //Update player name and level display
+  var playerName = playerNameInput.value;
+  document.getElementById('player-name').innerText = playerName;
+  document.getElementById('selected-level').innerText = selectedLevel;
+  console.log(`playing for ${playerName} on level ${selectedLevel}`)
+
+  //update speed
+  speed = getSpeed(selectedLevel);
+
+  //Show top panel
+  topPanel.style.display = 'grid';
+
+  //Hide game form
+  startOverlay.style.display = "none"
+
+  //start game
+  startGame()
+})
+
+function getSpeed(level){
+  switch(level) {
+    case "easy":
+      speed = 10;
+      break;
+    case "medium":
+      speed = 15;
+      break;
+    case "hard":
+      speed = 20;
+      break;
+    case "brutal":
+      speed = 25;
+      break;
+    default:
+      speed = 10; 
+  }
+}
 
 function showCountDown(){
   //Display countdown overlay
@@ -295,11 +294,12 @@ function startGame(){
     canvas.style.display = 'flex';
     //run game
     gameStarted = true;
-    gamePlay();
   }, 3000);
 }
 
-function gamePlay(){
+draw()
+
+function draw(){
   ctx.globalCompositeOperation = 'destination-over';
 
   //Clear canvas
@@ -310,11 +310,8 @@ function gamePlay(){
   car.move();
 
   //Draw Road
-  if(isLooping){
+  if(gameStarted){
     updateRoad();
-  }
-  else{
-    isLooping = true;
   }
 
   showRoad();
@@ -325,7 +322,7 @@ function gamePlay(){
     scoreBoard.innerText = score;
     score++;
   }
-  window.requestAnimationFrame(gamePlay);
+  window.requestAnimationFrame(gamePlay());
 }
 
 function gameOver() {
