@@ -22,13 +22,14 @@ let straightBlocks = 0;
 let turnBlocks = 0;
 let speed = 10;
 let score = 0;
-
-//audio
 var countSound = new Audio('sounds/count.mp3');
 var playSound = new Audio('sounds/Manual.mp3');
 var moveSound = new Audio('sounds/Kanan-kiri.mp3');
 var crashSound = new Audio('sounds/Nabrak.mp3');
 var gameoverSound = new Audio('sounds/Gwenchanayo2.mp3');
+
+//coba
+var enemycars = ["./assets/images/car_black.svg", "./assets/images/car_green.svg", "./assets/images/car_red.svg", "./assets/images/car_yellow.svg"]
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -73,14 +74,15 @@ class Car {
       if (turnRight == true) {
           this.x += 5;
       }
+
       // Play move sound when the car moves
       if (turnLeft || turnRight) {
-        if (!window.moveSound.paused) {
-            window.moveSound.pause();
-            window.moveSound.currentTime = 0;
-        }
-        window.moveSound.play();
+      if (!window.moveSound.paused) {
+          window.moveSound.pause();
+          window.moveSound.currentTime = 0;
       }
+      window.moveSound.play();
+  }
 
       //COLLITION CHECKER
       if (gameStarted) {
@@ -91,17 +93,17 @@ class Car {
         const roadLeftBound = road[53].o - 50;
         const roadRightBound = road[53].o + 450;
         if (carLeft < roadLeftBound || carRight > roadRightBound) {
-          gameOver();
-          crashSound.play();
+            gameOver();
+            crashSound.play();
         }
         //Collides with an obstacle
         if (road[53].e) {
-          let dif = Math.abs((this.x + 75) - road[53].e);
-          const obstacleWidth = 60; 
-          if (dif < obstacleWidth) {
-              gameOver();
-              crashSound.play();
-          }
+            let dif = Math.abs((this.x + 75) - road[53].e);
+            const obstacleWidth = 60; 
+                if (dif < obstacleWidth) {
+                    gameOver();
+                    crashSound.play();
+                }
         }
       }
   }
@@ -148,7 +150,7 @@ function createObstacle(offset, i) {
   let element = false;
   let rn = Math.random();
   if (gameStarted && totalBlocks % 30 == 0 && Math.random() > 0.7) {
-      let x = (rn * 350) + offset + 50;
+      let x = (rn * 300) + offset + 50;
       element = x;
   }
   road.unshift({ o: offset, w: 400, e: element });
@@ -225,7 +227,6 @@ function updateRoad() {
         break;
   }
 }
-//CreateRoad();
 
 //submit listener
 form.addEventListener('submit', function(event) {
@@ -308,6 +309,7 @@ function startGame(){
     gameStarted = true;
     playSound.play();
   }, 4000);
+
 }
 
 draw()
@@ -352,6 +354,11 @@ function gameOver() {
   console.log("GAME OVER!")
   gameStarted = false;
 
+  //update sound
+  playSound.pause();
+  gameoverSound.play();
+  playSound.currentTime = 0;
+
   //show gameover panel
   const gameoverOverlay = document.getElementById("canvas-overlay-gameover");
   const resetButton = document.getElementById("reset-btn");
@@ -375,4 +382,5 @@ function resetGame() {
     car = new Car();
     createRoad();
     startGame();
+    gameoverSound.pause();
 }
