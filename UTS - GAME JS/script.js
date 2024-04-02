@@ -8,7 +8,7 @@ const topPanel = document.getElementById("top-panel-container");
 const scoreBoard = document.getElementById("score");
 const canvas = document.getElementById('canvas');
 const playerNameInput = document.getElementById('name');
-const selectedLevel = document.getElementById('level').value;
+var selectedLevel = "";
 
 //variables
 var ctx = canvas.getContext('2d');
@@ -22,7 +22,6 @@ let straightBlocks = 0;
 let turnBlocks = 0;
 let speed = 10;
 let score = 0;
-let isLooping = false;
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -33,7 +32,7 @@ canvas.style.display = 'none';
 class Car {
   constructor() {
       this.x = 350;
-      this.y = 500;
+      this.y = 450;
   }
 
   //add turn animation
@@ -67,20 +66,52 @@ class Car {
       if (turnRight == true) {
           this.x += 5;
       }
-      //Check if Collide with the road
+
+      //COLLITION CHECKER
       if (gameStarted) {
-          if (this.x < road[53].o - 50 || this.x + 200 > road[53].o + 450) {
+        console.log(road[53].o)
+        //Collides with the road
+        const carLeft = this.x;
+        const carRight = this.x + 200;
+        const roadLeftBound = road[53].o - 50;
+        const roadRightBound = road[53].o + 450;
+        if (carLeft < roadLeftBound || carRight > roadRightBound) {
             gameOver();
-          }
-          if (road[53].e != false) {
-              let dif = Math.abs((this.x + 100) - road[53].e);
-              if (dif < 80) {
-                gameOver();
-              }
-          }
+        }
+        //Collides with an obstacle
+        if (road[53].e) {
+            let dif = Math.abs((this.x + 100) - road[53].e);
+            const obstacleWidth = 40; 
+                if (dif < obstacleWidth * 2) {
+                    gameOver();
+                }
+        }
       }
   }
 }
+
+//add controller
+window.addEventListener("keydown", function (e) {
+  if (gameStarted) {
+    e.preventDefault();
+    if (e.keyCode == 37) {
+        turnLeft = true;
+        turnRight = false;
+    } else if (e.keyCode == 39) {
+        turnRight = true;
+        turnLeft = false;
+    }
+  }
+});
+window.addEventListener("keyup", function (e) {
+  if (e.keyCode == 37) {
+      turnLeft = false;
+      turnRight = false;
+  } else if (e.keyCode == 39) {
+      turnRight = false;
+      turnLeft = false;
+  }
+});
 
 //car init
 let carImage = new Image();
@@ -94,7 +125,6 @@ function createRoad() {
       createObstacle(250, i);
   }
 }
-
 // Create obstacle Map
 function createObstacle(offset, i) {
   totalBlocks++;
@@ -119,6 +149,7 @@ function createObstacle(offset, i) {
 function showRoad() {
   for (let i = 0; i < road.length; i++) {
     if (i > 0) {
+      //draw road
         ctx.beginPath();
         ctx.moveTo(road[i].o, i * speed);
         ctx.lineWidth = 10;
@@ -135,14 +166,14 @@ function showRoad() {
     }
     if (road[i].b != false) {
         ctx.beginPath();
-        ctx.font = '300 52px "Press Start 2P"';
+        ctx.font = '300 52px "Font Awesome 5 Pro"';
         ctx.fillStyle = "#fdfffe";
         ctx.textAlign = 'center';
         ctx.fillText("\uf400", road[i].b, i * speed);
     }
     if (road[i].e != false) {
         ctx.beginPath();
-        ctx.font = '300 52px "Press Start 2P"';
+        ctx.font = '300 52px "Font Awesome 5 Pro"';
         ctx.fillStyle = "#fdfffe";
         ctx.textAlign = 'center';
         ctx.fillText("\uf2fc", road[i].e, i * speed);
@@ -194,29 +225,7 @@ function updateRoad() {
         break;
   }
 }
-
-//add controller
-window.addEventListener("keydown", function (e) {
-  if (gameStarted) {
-    e.preventDefault();
-    if (e.keyCode == 37) {
-        turnLeft = true;
-        turnRight = false;
-    } else if (e.keyCode == 39) {
-        turnRight = true;
-        turnLeft = false;
-    }
-  }
-});
-window.addEventListener("keyup", function (e) {
-  if (e.keyCode == 37) {
-      turnLeft = false;
-      turnRight = false;
-  } else if (e.keyCode == 39) {
-      turnRight = false;
-      turnLeft = false;
-  }
-});
+//CreateRoad();
 
 //submit listener
 form.addEventListener('submit', function(event) {
@@ -225,11 +234,14 @@ form.addEventListener('submit', function(event) {
    //Update player name and level display
   var playerName = playerNameInput.value;
   document.getElementById('player-name').innerText = playerName;
+  selectedLevel = document.getElementById('level').value; 
   document.getElementById('selected-level').innerText = selectedLevel;
-  console.log(`playing for ${playerName} on level ${selectedLevel}`)
 
   //update speed
   speed = getSpeed(selectedLevel);
+
+  //check log
+  console.log(`playing for ${playerName} on level ${selectedLevel} speed ${speed}`);
 
   //Show top panel
   topPanel.style.display = 'grid';
@@ -244,20 +256,21 @@ form.addEventListener('submit', function(event) {
 function getSpeed(level){
   switch(level) {
     case "easy":
-      speed = 5;
-      break;
-    case "medium":
       speed = 10;
       break;
-    case "hard":
-      speed = 15;
-      break;
-    case "brutal":
+    case "medium":
       speed = 20;
       break;
+    case "hard":
+      speed = 30;
+      break;
+    case "brutal":
+      speed = 40;
+      break;
     default:
-      speed = 5; 
+      speed = 10;   
   }
+  return speed;
 }
 
 function showCountDown(){
@@ -284,15 +297,16 @@ function startGame(){
 
   //Show canvas with delay for countdown
   setTimeout(() => {
+    //hide countdown
+    countdownOverlay.style.display = 'none';
     canvas.style.display = 'flex';
-    //create road and obstacle
-    createRoad()
-    //run game
+
+    createRoad();
     gameStarted = true;
-    draw()
   }, 4000);
 }
 
+draw()
 function draw(){
   ctx.globalCompositeOperation = 'destination-over';
 
@@ -307,6 +321,9 @@ function draw(){
   if(gameStarted){
     updateRoad();
   }
+  else {
+    showStart();
+  }
 
   showRoad();
 
@@ -317,6 +334,14 @@ function draw(){
     score++;
   }
   window.requestAnimationFrame(draw);
+}
+
+function showStart() {
+  ctx.beginPath();
+  ctx.font = '300 62px "Font Awesome 5 Pro"';
+  ctx.fillStyle = "#858585";
+  ctx.textAlign = 'center';
+  ctx.fillText("\uf04c", 450, 350);
 }
 
 function gameOver() {
@@ -342,10 +367,8 @@ function resetGame() {
     road = [];
     speed = getSpeed(selectedLevel);
     scoreBoard.innerText = score;
-    gameStarted = false;
     totalBlocks = 0;
     car = new Car();
     createRoad();
-    showCountDown();
     startGame();
 }
