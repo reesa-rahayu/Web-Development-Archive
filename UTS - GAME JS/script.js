@@ -23,7 +23,6 @@ let turnBlocks = 0;
 let speed = 10;
 let score = 0;
 let isLooping = false;
-let countdown = 3; 
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -87,9 +86,6 @@ class Car {
 let carImage = new Image();
 carImage.src = "assets/images/car.png"
 let car = new Car();
-
-//create road and obstacle
-createRoad()
 
 //Create Road Array Map
 function createRoad() {
@@ -248,34 +244,31 @@ form.addEventListener('submit', function(event) {
 function getSpeed(level){
   switch(level) {
     case "easy":
-      speed = 10;
+      speed = 5;
       break;
     case "medium":
-      speed = 15;
+      speed = 10;
       break;
     case "hard":
-      speed = 20;
+      speed = 15;
       break;
     case "brutal":
-      speed = 25;
+      speed = 20;
       break;
     default:
-      speed = 10; 
+      speed = 5; 
   }
 }
 
 function showCountDown(){
+  let countdown = 3;
   //Display countdown overlay
-  canvasOverlay.style.display = "flex"
-  countdownOverlay.style.display = "flex"
-
-  let timeLeft = 3;
   const countdownInterval = setInterval(() => {
-    if (timeLeft > 0) {
-      countdownOverlay.textContent = `Starting game in ${timeLeft}...`;
-    }
-    timeLeft--;
-    if (timeLeft < 0) {
+    countdownOverlay.textContent = `Starting game in ${countdown}...`;
+    canvasOverlay.style.display = "flex"
+    countdownOverlay.style.display = "flex"
+    countdown--;
+    if (countdown < 0) {
       clearInterval(countdownInterval);
       //Hide countdown
       countdownOverlay.style.display = 'none';
@@ -292,12 +285,13 @@ function startGame(){
   //Show canvas with delay for countdown
   setTimeout(() => {
     canvas.style.display = 'flex';
+    //create road and obstacle
+    createRoad()
     //run game
     gameStarted = true;
-  }, 3000);
+    draw()
+  }, 4000);
 }
-
-draw()
 
 function draw(){
   ctx.globalCompositeOperation = 'destination-over';
@@ -322,7 +316,7 @@ function draw(){
     scoreBoard.innerText = score;
     score++;
   }
-  window.requestAnimationFrame(gamePlay());
+  window.requestAnimationFrame(draw);
 }
 
 function gameOver() {

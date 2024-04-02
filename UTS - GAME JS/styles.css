@@ -36,7 +36,7 @@ div.layout {
     margin: 0 auto;
 }
 #canvas-container{
-	width: 920px;
+	width: 900px;
 	height: 100dvh;
 	margin: 0 auto;
 	border: 3px solid rgb(0, 0, 0);
@@ -48,6 +48,7 @@ div.layout {
 	display: flex;
     justify-content: center;
     align-items: center;
+	z-index: 99;
 }
 
 #canvas-overlay-container-start, #canvas-overlay-countdown, #canvas-overlay-gameover {
@@ -112,9 +113,6 @@ button:hover{
 
 #canvas{
 	position: relative;
-	top: 5px;
-	left: 9px;
-	border: 1px var(--white) solid;
 }
 
 #canvas-overlay-gameover{
