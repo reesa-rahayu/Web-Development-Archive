@@ -44,7 +44,7 @@ canvas.height = canvasContainer.clientHeight;
 //car Object
 class Car {
   constructor() {
-      this.x = 375;
+      this.x = 375; //carLeft
       this.y = canvas.height - 200;
   }
 
@@ -91,21 +91,28 @@ class Car {
 
       //COLLITION CHECKER
       if (gameStarted) {
-        //Collides with the road
         const carLeft = this.x;
         const carRight = this.x + 150;
-        const roadLeftBound = road[53].o - 50;
-        const roadRightBound = road[53].o + 450;
+
+        //Collides with the road
+        const roadLeftBound = road[53].o - 75;
+        const roadRightBound = road[53].o + 475;
         if (carLeft < roadLeftBound || carRight > roadRightBound) {
-            gameOver();
+          console.log('Road Collotion')  
+          gameOver();
         }
+
         //Collides with an obstacle
-        if (road[53].e) {
-            let dif = Math.abs((this.x + 75) - road[53].e);
-            const obstacleWidth = 60; 
-                if (dif < obstacleWidth) {
-                    gameOver();
-                }
+        if (road[53].e != false) {
+          const obstacleLeft = road[53].e
+          const obstacleRight = road[53].e + 60
+          const carCenter = this.x + 75
+          let distanceLeft = Math.abs(carCenter - obstacleRight)
+          let distanceRight = Math.abs(carCenter - obstacleLeft)
+          console.log(`obstacleLeft: ${obstacleLeft} obstaccleRight ${obstacleRight} carCenter: ${carCenter} distanceLeft: ${distanceLeft} distanceRight: ${distanceRight}`)
+          if (distanceLeft < 30 || distanceRight < 30) {
+             gameOver();
+          }
         }
       }
   }
@@ -391,6 +398,8 @@ function gameOverPanel() {
   //isHighScore?
   if (score >= highScore){
     document.getElementById("win-highscore").style.display = "block"
+  } else{
+    document.getElementById("win-highscore").style.display = "none"
   }
 
   //reset game button
