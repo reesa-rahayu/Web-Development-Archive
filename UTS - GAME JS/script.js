@@ -293,14 +293,11 @@ function getSpeed(level){
     case "easy":
       speed = 10;
       break;
-    case "medium":
+    case "hard":
       speed = 20;
       break;
-    case "hard":
-      speed = 30;
-      break;
     case "brutal":
-      speed = 40;
+      speed = 30;
       break;
     default:
       speed = 10;   
