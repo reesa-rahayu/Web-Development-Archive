@@ -37,14 +37,14 @@ var gameoverSound = new Audio('sounds/Gwenchanayo2.mp3');
 topPanel.style.display = 'none';
 countdownOverlay.style.display = 'none';
 //canvas dimension
-canvas.width = 900;
+canvas.width = 1000;
 canvas.height = canvasContainer.clientHeight;
 
 //car Object
 class Car {
   constructor() {
-      this.x = 375; //carLeft
-      this.y = canvas.height - 200;
+      this.x = 425; //carLeft
+      this.y = canvas.height - 150;
   }
 
   //add turn animation
@@ -74,19 +74,13 @@ class Car {
   move() {
       if (turnLeft == true) {
           this.x -= 5;
+          window.moveSound.play();
       }
       if (turnRight == true) {
           this.x += 5;
+          window.moveSound.play();
       }
 
-      // Play move sound when the car moves
-      if (turnLeft || turnRight) {
-      if (!window.moveSound.paused) {
-          window.moveSound.pause();
-          window.moveSound.currentTime = 0;
-      }
-      window.moveSound.play();
-  }
       //COLLITION CHECKER
       if (gameStarted) {
         const carLeft = this.x;
@@ -149,7 +143,7 @@ function createRoad() {
   let total = canvas.height / 10;
   //create obstacle
   for (let i = 1; i < total + 1; i++) {
-      createObstacle(150, i);
+      createObstacle(200, i);
   }
 }
 // Create obstacle and White Strip Map
@@ -165,7 +159,6 @@ function createObstacle(offset, i) {
   //whitestrip
   let whiteStripeCount = i % 20;
   let whiteStrip = whiteStripeCount < 10;
-  console.log(`${i} ${whiteStrip}`)
   road.unshift({ o: offset, w: 600, e: element, s: whiteStrip});
 }
 
