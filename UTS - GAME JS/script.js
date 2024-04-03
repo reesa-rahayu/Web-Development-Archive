@@ -6,6 +6,8 @@ const startOverlay = document.getElementById("canvas-overlay-container-start");
 const countdownOverlay = document.getElementById("canvas-overlay-countdown");
 const topPanel = document.getElementById("top-panel-container");
 const scoreBoard = document.getElementById("score");
+const highScoreText = document.getElementById("high-score-text");
+const highScoreBoard = document.getElementById("high-score");
 const canvas = document.getElementById('canvas');
 const playerNameInput = document.getElementById('name');
 var selectedLevel = "";
@@ -22,6 +24,7 @@ let straightBlocks = 0;
 let turnBlocks = 0;
 let speed = 10;
 let score = 0;
+var highScore = 0;
 var countSound = new Audio('sounds/count.mp3');
 var playSound = new Audio('sounds/Manual.mp3');
 var moveSound = new Audio('sounds/Kanan-kiri.mp3');
@@ -34,13 +37,15 @@ var enemycars = ["./assets/images/car_black.svg", "./assets/images/car_green.svg
 //Document Opened
 topPanel.style.display = 'none';
 countdownOverlay.style.display = 'none';
-canvas.style.display = 'none';
+//canvas dimension
+canvas.width = 900;
+canvas.height = canvasContainer.clientHeight;
 
 //car Object
 class Car {
   constructor() {
-      this.x = 350;
-      this.y = 450;
+      this.x = 375;
+      this.y = canvas.height - 200;
   }
 
   //add turn animation
@@ -86,15 +91,13 @@ class Car {
 
       //COLLITION CHECKER
       if (gameStarted) {
-        console.log(road[53].o)
         //Collides with the road
         const carLeft = this.x;
-        const carRight = this.x + 100;
+        const carRight = this.x + 150;
         const roadLeftBound = road[53].o - 50;
         const roadRightBound = road[53].o + 450;
         if (carLeft < roadLeftBound || carRight > roadRightBound) {
             gameOver();
-            crashSound.play();
         }
         //Collides with an obstacle
         if (road[53].e) {
@@ -102,7 +105,6 @@ class Car {
             const obstacleWidth = 60; 
                 if (dif < obstacleWidth) {
                     gameOver();
-                    crashSound.play();
                 }
         }
       }
@@ -160,21 +162,40 @@ function createObstacle(offset, i) {
 function showRoad() {
   for (let i = 0; i < road.length; i++) {
     if (i > 0) {
-      //draw road
-        ctx.beginPath();
-        ctx.moveTo(road[i].o, i * speed);
-        ctx.lineWidth = 10;
-        ctx.lineTo(road[i - 1].o, (i * speed) + speed);
-        ctx.strokeStyle = "#fdfffe";
-        ctx.stroke();
+      //draw road fill
+      ctx.beginPath();
+      ctx.moveTo(road[i].o, i * speed);
+      ctx.lineTo(road[i - 1].o, (i * speed) + speed);
+      ctx.lineTo(road[i - 1].o + 400, (i * speed) + speed);
+      ctx.lineTo(road[i].o + 400, i * speed);
+      ctx.closePath();
+      ctx.fillStyle = "#000"; // Change this color for the road
+      ctx.fill();
 
-        ctx.beginPath();
-        ctx.moveTo(road[i].o + 400, i * speed);
-        ctx.lineWidth = 10;
-        ctx.lineTo(road[i - 1].o + 400, (i * speed) + speed);
-        ctx.strokeStyle = "#fdfffe";
-        ctx.stroke();
+      //draw road border left
+      ctx.beginPath();
+      ctx.moveTo(road[i].o, i * speed);
+      ctx.lineWidth = 10;
+      ctx.lineTo(road[i - 1].o, (i * speed) + speed);
+      ctx.strokeStyle = "#fdfffe";
+      ctx.stroke();
+      //draw road border right
+      ctx.beginPath();
+      ctx.moveTo(road[i].o + 400, i * speed);
+      ctx.lineWidth = 10;
+      ctx.lineTo(road[i - 1].o + 400, (i * speed) + speed);
+      ctx.strokeStyle = "#fdfffe";
+      ctx.stroke();
+
+      //draw center line
+      ctx.beginPath();
+      ctx.moveTo(road[i].o + 200, i * speed);
+      ctx.lineWidth = 10;
+      ctx.lineTo(road[i - 1].o + 200, (i * speed) + speed);
+      ctx.strokeStyle = "#fdfffe";
+      ctx.stroke();
     }
+
     if (road[i].e != false) {
       var enemycar = new Image(); 
       enemycar.src = 'assets/images/car_ood.svg';
@@ -303,15 +324,16 @@ function startGame(){
   setTimeout(() => {
     //hide countdown
     countdownOverlay.style.display = 'none';
-    canvas.style.display = 'flex';
+    canvasContainer.style.display = 'flex';
 
-    createRoad();
+    //run game
     gameStarted = true;
     playSound.play();
   }, 4000);
 
 }
 
+createRoad();
 draw()
 function draw(){
   ctx.globalCompositeOperation = 'destination-over';
@@ -327,9 +349,6 @@ function draw(){
   if(gameStarted){
     updateRoad();
   }
-  else {
-    showStart();
-  }
 
   showRoad();
 
@@ -338,22 +357,24 @@ function draw(){
     // Update Display
     scoreBoard.innerText = score;
     score++;
+    //highscore update
+    if (score >= highScore){
+      highScore = score
+      highScoreBoard.innerText = highScore;
+    }
   }
   window.requestAnimationFrame(draw);
 }
 
-function showStart() {
-  ctx.beginPath();
-  ctx.font = '300 62px "Font Awesome 5 Pro"';
-  ctx.fillStyle = "#858585";
-  ctx.textAlign = 'center';
-  ctx.fillText("\uf04c", 450, 350);
+function gameOver() {
+  crashSound.play();
+  console.log(`GAME OVER! Score: ${score}`)
+  gameStarted = false;
+  window.cancelAnimationFrame(draw);
+  gameOverPanel()
 }
 
-function gameOver() {
-  console.log("GAME OVER!")
-  gameStarted = false;
-
+function gameOverPanel() {  
   //update sound
   playSound.pause();
   gameoverSound.play();
@@ -361,16 +382,23 @@ function gameOver() {
 
   //show gameover panel
   const gameoverOverlay = document.getElementById("canvas-overlay-gameover");
-  const resetButton = document.getElementById("reset-btn");
   canvasOverlay.style.display = "flex"
   gameoverOverlay.style.display = "block"
 
+  //show score
+  scoreBoard.innerText = score;
+
+  //isHighScore?
+  if (score >= highScore){
+    document.getElementById("win-highscore").style.display = "block"
+  }
+
   //reset game button
+  const resetButton = document.getElementById("reset-btn");
   resetButton.addEventListener('click', function(event) {
     gameoverOverlay.style.display = "none"
     resetGame()
   })
-
 }
 
 function resetGame() {

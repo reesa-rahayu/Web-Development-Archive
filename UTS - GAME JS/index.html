@@ -8,47 +8,47 @@
   </head>
   <body>
     <div class="main">
+      <div class="top-panel-container" id="top-panel-container">
+        <p class="player-name">Player: <span id="player-name"></span></p>
+        <p class="score">Score: <span id="score">0</span></p>
+        <p class="high-score">High score: <span id="high-score">0</span></p>
+        <p class="level">Level: <span id="selected-level"></span></p>
+      </div>
+      <div id="canvas-overlay-container">
+        <div id="canvas-overlay-container-start">
+          <h1 id="title">Car Racing Game</h1>
+
+          <!-- Form to start the game -->
+          <form id="game-form">
+            <!-- Enter name -->
+            <div class="name-input">
+              <label for="name">Enter your name:</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <!-- Choose Level -->
+            <div class="level-input">
+              <label for="level">Select a level:</label>
+              <select id="level" name="level">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+                <option value="brutal">Brutal</option>
+              </select>
+            </div>
+
+            <button type="submit">Start Game</button>
+          </form>
+        </div>
+        <div id="canvas-overlay-countdown"></div>
+        <div id="canvas-overlay-gameover">
+          <div id="game-over-text">GAME OVER!!</div>
+          <p id="win-highscore">"Amazing job! You're the new high scorer!"</p>
+          <button id="reset-btn">RESET GAME</button>
+        </div>
+      </div>
       <div id="canvas-container">
-        <div class="top-panel-container" id="top-panel-container">
-            <div class="player-name">
-              Player: <span id="player-name"></span>
-            </div>
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="level">Level: <span id="selected-level"></span></div>
-        </div>
-        <div id="canvas-overlay-container">
-            <div id="canvas-overlay-container-start">
-                <h1 id="title">Car Racing Game</h1>
-    
-                <!-- Form to start the game -->
-                <form id="game-form">
-                  <!-- Enter name -->
-                  <div class="name-input">
-                    <label for="name">Enter your name:</label>
-                    <input type="text" id="name" name="name" required />
-                  </div>
-    
-                  <!-- Choose Level -->
-                  <div class="level-input">
-                    <label for="level">Select a level:</label>
-                    <select id="level" name="level">
-                      <option value="easy">Easy</option>
-                      <option value="medium">Medium</option>
-                      <option value="hard">Hard</option>
-                      <option value="brutal">Brutal</option>
-                    </select>
-                  </div>
-    
-                  <button type="submit">Start Game</button>
-                </form>
-            </div>
-            <div id="canvas-overlay-countdown"></div>
-            <div id="canvas-overlay-gameover">
-              <div id="game-over-text">GAME OVER!!</div>
-              <button id="reset-btn">RESET GAME</button>
-            </div>
-        </div>
-        <canvas id="canvas" height="700" width="900"></canvas>
+        <canvas id="canvas"></canvas>
       </div>
     </div>
     <!-- JavaScript -->

@@ -4,7 +4,6 @@
 	--primary-color: #001c3a; 
 	--secondary-color: #ff92f0; 
 	--white: #fdfffe;
-	--background-color: #d1e7ff;
   }
 
 html, body {
@@ -20,10 +19,12 @@ html, body {
     text-transform: uppercase;
 }
 
+p{
+	font-size: medium;
+}
+
 body {
-	overflow-x: hidden;
-	overflow-y: hidden;
-	background-color: var(--background-color);
+	overflow: hidden;
 }
 
 div.layout {
@@ -33,22 +34,38 @@ div.layout {
 .main{
 	width: 100%;
 	height: 100%;
-    margin: 0 auto;
+    margin: 0;
+	background-color: var(--primary-color);
+	position: relative;
 }
 #canvas-container{
-	width: 900px;
-	height: 100dvh;
+	width: 100%;
+	height: calc(100dvh + 20px);
 	margin: 0 auto;
-	border: 3px solid rgb(0, 0, 0);
+	top: -20px;
 	background-color: var(--primary-color);
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#canvas{
+	position: relative;
+	display: flex;
 }
 
 #canvas-overlay-container{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 100%;
 	display: flex;
     justify-content: center;
     align-items: center;
 	z-index: 99;
+	background-color: rgba(0, 0, 0, 0.7)
 }
 
 #canvas-overlay-container-start, #canvas-overlay-countdown, #canvas-overlay-gameover {
@@ -63,7 +80,7 @@ div.layout {
 	text-align: center;
 }
 .name-input label, .name-input input, .level-input label, .level-input select {
-      display: block;
+    display: block;
 }
 input[type="text"], .level-input select, button{
 	font-family: 'Press Start 2P', cursive;
@@ -102,22 +119,25 @@ button:hover{
 }
 
 .top-panel-container{
-	padding: 12px;
-	display: grid;
-	grid-template-columns: repeat(3, 280px);
+	padding: 15px;
+	line-height: 15px;
+	grid-template-columns: repeat(4, 300px);
 	gap: 25px;
+	left: 50%;
+	transform: translateX(-50%);
 	justify-content: center;
-	display: none;
 	text-align: center;
-}
-
-#canvas{
-	position: relative;
+	position: absolute;
+	z-index: 2;
 }
 
 #canvas-overlay-gameover{
 	font-size: xx-large;
 	display: none;
+	justify-content: center;
 	position: absolute;
 }
 
+#win-highscore{
+	display: none;
+}
