@@ -25,8 +25,7 @@ let turnBlocks = 0;
 let speed = 10;
 let score = 0;
 var highScore = 0;
-var submitAudio = new Audio('sounds/game_start.mp3');
-var themeSound = new Audio('sounds/game_theme.mp3');
+var submitAudio = new Audio('sounds/game-start.mp3');
 var startSound = new Audio('sounds/arcade.mp3');
 var countSound = new Audio('sounds/count.mp3');
 var playSound = new Audio('sounds/Manual.mp3');
@@ -95,7 +94,7 @@ class Car {
 
         //Collides with the road
         const roadLeftBound = road[53].o - 75;
-        const roadRightBound = road[53].o + 475;
+        const roadRightBound = road[53].o + 675;
         if (carLeft < roadLeftBound || carRight > roadRightBound) {
           console.log('Road Collotion')  
           gameOver();
@@ -148,35 +147,41 @@ let car = new Car();
 //Create Road Array Map
 function createRoad() {
   let total = canvas.height / 10;
+  //create obstacle
   for (let i = 1; i < total + 1; i++) {
-      createObstacle(250, i);
+      createObstacle(150, i);
   }
 }
-// Create obstacle Map
+// Create obstacle and White Strip Map
 function createObstacle(offset, i) {
+  //obstacle
   totalBlocks++;
   let element = false;
   let rn = Math.random();
   if (gameStarted && totalBlocks % 30 == 0 && Math.random() > 0.7) {
-      let x = (rn * 300) + offset + 50;
+      let x = (rn * 300) + offset;
       element = x;
   }
-  road.unshift({ o: offset, w: 400, e: element });
+  //whitestrip
+  let whiteStripeCount = i % 20;
+  let whiteStrip = whiteStripeCount < 10;
+  console.log(`${i} ${whiteStrip}`)
+  road.unshift({ o: offset, w: 600, e: element, s: whiteStrip});
 }
 
 // Drawing the Road and Obstacle
 function showRoad() {
   for (let i = 0; i < road.length; i++) {
     if (i > 0) {
-      //draw road fill
-      ctx.beginPath();
-      ctx.moveTo(road[i].o, i * speed);
-      ctx.lineTo(road[i - 1].o, (i * speed) + speed);
-      ctx.lineTo(road[i - 1].o + 400, (i * speed) + speed);
-      ctx.lineTo(road[i].o + 400, i * speed);
-      ctx.closePath();
-      ctx.fillStyle = "#000"; // Change this color for the road
-      ctx.fill();
+      //draw whitestrip
+      if (road[i].s){
+        ctx.beginPath();
+        ctx.moveTo(road[i].o + 300, i * speed);
+        ctx.lineWidth = 5;
+        ctx.lineTo(road[i - 1].o + 300, (i * speed) + speed);
+        ctx.strokeStyle = "#fdfffe";
+        ctx.stroke();
+      }
 
       //draw road border left
       ctx.beginPath();
@@ -187,27 +192,29 @@ function showRoad() {
       ctx.stroke();
       //draw road border right
       ctx.beginPath();
-      ctx.moveTo(road[i].o + 400, i * speed);
+      ctx.moveTo(road[i].o + road[i].w, i * speed);
       ctx.lineWidth = 10;
-      ctx.lineTo(road[i - 1].o + 400, (i * speed) + speed);
+      ctx.lineTo(road[i - 1].o + road[i].w, (i * speed) + speed);
       ctx.strokeStyle = "#fdfffe";
       ctx.stroke();
 
-      //draw center line
+      //draw road fill
       ctx.beginPath();
-      ctx.moveTo(road[i].o + 200, i * speed);
-      ctx.lineWidth = 10;
-      ctx.lineTo(road[i - 1].o + 200, (i * speed) + speed);
-      ctx.strokeStyle = "#fdfffe";
-      ctx.stroke();
+      ctx.moveTo(road[i].o, i * speed);
+      ctx.lineTo(road[i - 1].o, (i * speed) + speed);
+      ctx.lineTo(road[i - 1].o + road[i].w, (i * speed) + speed);
+      ctx.lineTo(road[i].o + road[i].w, i * speed);
+      ctx.closePath();
+      ctx.fillStyle = "#000"; // Change this color for the road
+      ctx.fill();
     }
-
+    //draw enemy
     if (road[i].e != false) {
       var enemycar = new Image(); 
       enemycar.src = 'assets/images/car_ood.svg';
       ctx.drawImage(enemycar, road[i].e, i * speed, 60, 120);
     }
-  }
+  } 
 }
 
 //Update Road Turn and Obstacle
@@ -221,7 +228,7 @@ function updateRoad() {
             straightBlocks++;
         } else {
             straightBlocks = 0;
-            if (r > 0.5 && road[0].o < canvas.width - 500) {
+            if (r > 0.5 && road[0].o < canvas.width - 700) { //changed
                 roadCurve = 1;
             } else if (road[0].o >= 100) {
                 roadCurve = -1;
@@ -229,7 +236,7 @@ function updateRoad() {
         }
         break;
     case 1:
-        if (turnBlocks < 80 && road[0].o < (canvas.width - 500)) {
+        if (turnBlocks < 80 && road[0].o < (canvas.width - 700)) { //changed
             let offset = road[0].o;
             offset = offset + (turnBlocks / 20);
             createObstacle(offset, turnBlocks);
@@ -314,7 +321,6 @@ function showCountDown(){
   const countdownInterval = setInterval(() => {
     countdownOverlay.textContent = `Starting game in ${countdown}...`;
     //update sound
-    themeSound.play()
     countSound.play()
 
     canvasOverlay.style.display = "flex"
@@ -342,6 +348,9 @@ function startGame(){
 
     //run game
     gameStarted = true;
+
+    //sound play
+    playSound.loop = true
     playSound.play();
   }, 4000);
 
@@ -365,7 +374,7 @@ function draw(){
   }
 
   showRoad();
-
+  
   //Scoring
   if (gameStarted) {
     // Update Display
