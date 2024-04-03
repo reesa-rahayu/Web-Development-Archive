@@ -203,9 +203,9 @@ function showRoad() {
     }
     //draw enemy
     if (road[i].e != false) {
-      var enemycar = new Image(); 
-      enemycar.src = 'assets/images/car_ood.svg';
-      ctx.drawImage(enemycar, road[i].e, i * speed, 60, 120);
+      var obstacle = new Image(); 
+      obstacle.src = 'assets/images/cone.png';
+      ctx.drawImage(obstacle, road[i].e, i * speed, 60, 100);
     }
   } 
 }
