@@ -25,14 +25,14 @@ let turnBlocks = 0;
 let speed = 10;
 let score = 0;
 var highScore = 0;
+var submitAudio = new Audio('sounds/game_start.mp3');
+var themeSound = new Audio('sounds/game_theme.mp3');
+var startSound = new Audio('sounds/arcade.mp3');
 var countSound = new Audio('sounds/count.mp3');
 var playSound = new Audio('sounds/Manual.mp3');
 var moveSound = new Audio('sounds/Kanan-kiri.mp3');
 var crashSound = new Audio('sounds/Nabrak.mp3');
 var gameoverSound = new Audio('sounds/Gwenchanayo2.mp3');
-
-//coba
-var enemycars = ["./assets/images/car_black.svg", "./assets/images/car_green.svg", "./assets/images/car_red.svg", "./assets/images/car_yellow.svg"]
 
 //Document Opened
 topPanel.style.display = 'none';
@@ -88,7 +88,6 @@ class Car {
       }
       window.moveSound.play();
   }
-
       //COLLITION CHECKER
       if (gameStarted) {
         const carLeft = this.x;
@@ -260,7 +259,14 @@ function updateRoad() {
 form.addEventListener('submit', function(event) {
   event.preventDefault() //prevent load default
 
-   //Update player name and level display
+  // Play submit audio
+  let submitAudioVolume = 1.0; 
+  // Set the volume and play
+  const submitAudio = new Audio('sounds/game_start.mp3');
+  submitAudio.volume = submitAudioVolume;
+  submitAudio.play();
+
+  //Update player name and level display
   var playerName = playerNameInput.value;
   document.getElementById('player-name').innerText = playerName;
   selectedLevel = document.getElementById('level').value; 
@@ -308,6 +314,7 @@ function showCountDown(){
   const countdownInterval = setInterval(() => {
     countdownOverlay.textContent = `Starting game in ${countdown}...`;
     //update sound
+    themeSound.play()
     countSound.play()
 
     canvasOverlay.style.display = "flex"
