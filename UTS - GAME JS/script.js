@@ -412,9 +412,17 @@ function gameOverPanel() {
   }
 
   //reset game button
-  const resetButton = document.getElementById("reset-btn");
-  resetButton.addEventListener('click', function(event) {
+  const replayButton = document.getElementById("replay-btn");
+  replayButton.addEventListener('click', function(event) {
     gameoverOverlay.style.display = "none"
+    resetGame()
+    startGame();
+  })
+
+  const backButton = document.getElementById("back-btn")
+  backButton.addEventListener("click", function(event){
+    gameoverOverlay.style.display = "none"
+    startOverlay.style.display = "block"
     resetGame()
   })
 }
@@ -427,6 +435,6 @@ function resetGame() {
     totalBlocks = 0;
     car = new Car();
     createRoad();
-    startGame();
     gameoverSound.pause();
 }
+
