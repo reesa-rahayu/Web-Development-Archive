@@ -1,150 +1,106 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
+Route::view('/re', 'welcome');
 
+//layanan umum
 Route::view('layanan/umum', 'layanan_umum.dashboard');
+
+Route::view('/fSKBI', 'layanan_umum.fSKBI')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKBI');
+
+Route::get('/fSKU', function (User $user) {
+    return view('layanan_umum.fSKU', ['title' => 'Formulir SKU', 'user_info' => $user]);
+})->middleware(['auth', 'verified'])->name('SKU');
+
+Route::get('/fSKBI', function (User $user) {
+    return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'user_info' => $user]);
+})->middleware(['auth', 'verified'])->name('SKBI');
+
+Route::view('/fSKD', 'layanan_umum.fSKD')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKD');
+
+Route::view('/fSKPD', 'layanan_umum.fSKPD')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKPD');
+
+Route::view('/fSKCK', 'layanan_umum.fSKCK')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKPD');
+
+Route::view('/fSKPOT', 'layanan_umum.fSKPOT')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKPOT');
+
+Route::view('/fSKTMs', 'layanan_umum.fSKTMs')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKTMs');
+
+Route::view('/fSKTMu', 'layanan_umum.fSKTMu')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKTMu');
+
+Route::view('/fSKTU', 'layanan_umum.fSKTU')
+    ->middleware(['auth', 'verified'])
+    ->name('fSKTU');
+
+Route::view('/PIKP', 'layanan_umum.PIKP')
+    ->middleware(['auth', 'verified'])
+    ->name('PIKP');
+
+//layanan umum
 Route::view('layanan/kependudukan', 'layanan_penduduk.dashboard');
 
-Route::get('/FAQ', function () {
-    return view('FAQ');
-});
+Route::view('/fAW', 'layanan_penduduk.fAW')
+    ->middleware(['auth', 'verified'])
+    ->name('fAW');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::view('/fAW', 'layanan_penduduk.fAW')
+    ->middleware(['auth', 'verified'])
+    ->name('fAW');
 
-Route::get('/reg', function () {
-    return view('register');
-});
+Route::view('/fKK', 'layanan_penduduk.fKK')
+    ->middleware(['auth', 'verified'])
+    ->name('fKK');
 
-Route::get('/aju', function () {
-    return view('ajukan');
-});
+Route::view('/fPindah', 'layanan_penduduk.fPindah')
+    ->middleware(['auth', 'verified'])
+    ->name('fPindah');
 
-Route::get('/layanan', function () {
-    return view('layananumum');
-});
+Route::view('/fPKK', 'layanan_penduduk.fPKK')
+    ->middleware(['auth', 'verified'])
+    ->name('fPKK');
 
-Route::get('/layananpend', function () {
-    return view('layananpend');
-});
+Route::view('/fPKTP', 'layanan_penduduk.fPKTP')
+    ->middleware(['auth', 'verified'])
+    ->name('fPKTP');
 
-Route::get('/fSKU', function () {
-    return view('fSKU');
-});
+Route::view('/fPP', 'layanan_penduduk.fPP')
+    ->middleware(['auth', 'verified'])
+    ->name('fPP');
 
-Route::get('/fSKTU', function () {
-    return view('fSKTU');
-});
+Route::view('/fPPDK', 'layanan_penduduk.fPPDK')
+    ->middleware(['auth', 'verified'])
+    ->name('fPPDK');
 
-Route::get('/fSKTMs', function () {
-    return view('fSKTMs');
-});
+Route::view('/fPPPP', 'layanan_penduduk.fPPPP')
+    ->middleware(['auth', 'verified'])
+    ->name('fPPPP');
 
-Route::get('/fSKTMu', function () {
-    return view('fSKTMu');
-});
+Route::view('/fPPW', 'layanan_penduduk.fPPW')
+    ->middleware(['auth', 'verified'])
+    ->name('fPPW');
 
-Route::get('/PIKP', function () {
-    return view('PIKP');
-});
+Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
+    ->middleware(['auth', 'verified'])
+    ->name('fRTMS');
 
-Route::get('/fAW', function () {
-    return view('fAW');
-});
-
-Route::get('/fRTMS', function () {
-    return view('fRTMS');
-});
-
-Route::get('/fSKPOT', function () {
-    return view('fSKPOT');
-});
-
-Route::get('/fSKBI', function () {
-    return view('fSKBI');
-});
-
-Route::get('/fBio', function () {
-    return view('fBio');
-});
-
-Route::get('/fKK', function () {
-    return view('fKK');
-});
-
-Route::get('/fPPDK', function () {
-    return view('fPPDK');
-});
-
-Route::get('/fPKK', function () {
-    return view('fPKK');
-});
-
-Route::get('/fPKTP', function () {
-    return view('fPKTP');
-});
-
-Route::get('/fSKD', function () {
-    return view('fSKD');
-});
-
-Route::get('/fSKPD', function () {
-    return view('fSKPD');
-});
-
-
-Route::get('/fPindah', function () {
-    return view('fPindah');
-});
-
-Route::get('/fPPPP', function () {
-    return view('fPPPP');
-});
-
-Route::get('/fPP', function () {
-    return view('fPP');
-});
-
-Route::get('/fPPW', function () {
-    return view('fPPW');
-});
-
-Route::get('/admin', function () {
-    return view('beranda');
-});
-
-Route::get('/ajuansurat', function () {
-    return view('ajuansurat');
-});
-
-Route::get('/faq', function () {
-    return view('faq');
-});
-Route::get('/dokpenduduk', function () {
-    return view('dokpenduduk');
-});
-
-Route::get('/dokdesa', function () {
-    return view('dokdesa');
-});
-Route::get('/kelolauser', function () {
-    return view('kelolauser');
-});
-Route::get('/suratselesai', function () {
-    return view('suratselesai');
-});
-Route::get('/konfirmasisurat', function () {
-    return view('konfirmasisurat');
-});
-Route::get('/menolak', function () {
-    return view('menolak');
-});
-Route::get('/tambahdokdesa', function () {
-    return view('tambahdokdesa');
-});
+Route::view('/FAQ', 'FAQ.faq');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
