@@ -102,6 +102,8 @@ Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
 
 Route::view('/FAQ', 'FAQ.faq');
 
+Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

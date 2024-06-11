@@ -2,36 +2,10 @@
     <nav class ="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="/" class="flex items-center">
-                <img src="https://i.pinimg.com/564x/af/f2/8a/aff28acbd67bef1684bc93010f962db9.jpg" class="mr-3 h-6 sm:h-9"
-                    alt="Flowbite Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">SILAD</span>
+                <x-application-logo></x-application-logo>
             </a>
-            <div
-                class="flex items-center lg:order-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"">
-                @if (Route::has('login'))
-                    <livewire:welcome.navigation />
-                @endif
-            </div>
-            <div class="-mr-2 flex lg:hidden">
-                <!-- Mobile menu button -->
-                <button type="button" @click="isOpen = !isOpen"
-                    class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    aria-controls="mobile-menu-2" aria-expanded="false">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Open main menu</span>
-                    <!-- Menu open: "hidden", Menu closed: "block" -->
-                    <svg :class="{ 'hidden': isOpen, 'block': !isOpen }" class="block h-6 w-6" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                    <!-- Menu open: "block", Menu closed: "hidden" -->
-                    <svg :class="{ 'block': isOpen, 'hidden': !isOpen }" class="hidden h-6 w-6" fill="none"
-                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
+
+            {{-- main nav link --}}
             <div class="justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
                 <div class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
 
@@ -43,7 +17,7 @@
                                 class="w-full flex items-center justify-between rounded font-semibold"
                                 data-dropdown-toggle="dropdown-menu">
                                 <span
-                                    class="flex py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
+                                    class="flex py-2 pr-4 pl-3 text-gray-700 border-b hover:underline border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-blue-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
                                     Layanan</span>
                                 <svg class="h-5 w-5 flex-none text-gray-700 dark:text-gray-100" viewBox="0 0 20 20"
                                     fill="currentColor" aria-hidden="true">
@@ -109,9 +83,17 @@
                     </div>
 
                     <x-nav-link href="/FAQ" :active="request()->is('FAQ')">FAQ</x-nav-link>
-
                 </div>
             </div>
+
+            {{-- user button --}}
+            <div class="flex justify-end items-center lg:flex lg:w-auto lg:order-2 lg:flex-row lg:space-x-8 lg:mt-0"
+                id="mobile-menu-2">
+                @if (Route::has('login'))
+                    <livewire:welcome.navigation />
+                @endif
+            </div>
+
         </div>
     </nav>
 </header>

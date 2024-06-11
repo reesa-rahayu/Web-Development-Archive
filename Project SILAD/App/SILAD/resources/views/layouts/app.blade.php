@@ -23,29 +23,33 @@
 
     <style>
         .gradient {
-            background: linear-gradient(90deg, #1c1645 0%, #5887FF 100%);
+            background: linear-gradient(90deg, #907ffe 0%, #5887FF 100%);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .gradient {
+                background: linear-gradient(90deg, #1c1645 0%, #5887FF 100%);
+            }
         }
     </style>
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('livewire.layout.navigation')
+    <x-navbar></x-navbar>
 
-        <!-- Page Heading -->
-        @isset($header)
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endisset
+    <!-- Page Heading -->
+    @isset($header)
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+    @endisset
 
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
+    <!-- Page Content -->
+    <main>
+        {{ $slot }}
+    </main>
 </body>
 
 </html>

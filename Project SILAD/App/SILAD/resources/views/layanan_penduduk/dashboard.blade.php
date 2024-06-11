@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pelayanan Penduduk</title>
-    <link rel="shortcut icon" href="https://i.pinimg.com/564x/af/f2/8a/aff28acbd67bef1684bc93010f962db9.jpg">
-    @vite('resources/css/app.css')
-</head>
-
-<body>
-
+<x-app-layout>
     <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
             aria-hidden="true">
@@ -46,32 +34,6 @@
             </p>
 
             <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-                <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
-                    <span class="inline-block text-blue-500 dark:text-blue-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-                        </svg>
-                    </span>
-
-                    <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">Biodata Penduduk</h1>
-
-                    <p class="text-gray-500 dark:text-gray-300">
-                        Informasi dasar tentang identitas dan data diri seseorang yang tercatat di Disdukcapil.
-                    </p>
-
-                    <a href="/fBio"
-                        class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </a>
-                </div>
 
                 <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
                     <span class="inline-block text-blue-500 dark:text-blue-400">
@@ -125,25 +87,45 @@
                         </svg>
                     </a>
                 </div>
+
+                <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
+                    <span class="inline-block text-blue-500 dark:text-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                        </svg>
+                    </span>
+
+                    <h1 class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
+                        Formulir Permohonan Pindah WNI Antar Provinsi (F-1.36)</h1>
+
+                    <p class="text-gray-500 dark:text-gray-300">
+                        Formulir yang digunakan untuk mengurus perpindahan tempat tinggal WNI
+                        antar provinsi.
+                    </p>
+
+                    <a href="/fPPW"
+                        class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <div class="fixed inset-x-0 lg:inset-x-auto bottom-6 lg:right-8 xl:right-10 xl:bottom-8">
-        <div class="lg:w-72 px-5 lg:px-0">
-            <div class="p-2 bg-blue-600 rounded-lg shadow-lg sm:p-1">
-                <div class="flex flex-wrap items-center justify-between">
-                    <!-- Hapus elemen SVG ikon coffee -->
-                    <a target="_blank" href="https://www.buymeacoffee.com/khatabwedaa"
-                        class="flex items-center flex-1 w-0">
-                        <!-- Kolom dengan satu kata berjumlah 10 huruf -->
-                        <span class="flex items-center justify-center w-full font-medium text-white">
-                            <a href="/"
-                                class="flex items-center justify-center w-full text-white font-medium">Kembali</a>
-                        </span>
-                    </a>
-                </div>
-            </div>
+        <div class="lg:w-72 px-5 lg:px-0 flex justify-end">
+            <a href="/"
+                class="bg-blue-600 m-1 border-primary rounded-md inline-flex items-center justify-center py-3 px-7 text-center text-base font-medium text-white hover:bg-[#1B44C8] hover:border-[#1B44C8] disabled:bg-gray-3 disabled:border-gray-3 disabled:text-dark-5 active:bg-[#1B44C8] active:border-[#1B44C8]">
+                Kembali
+            </a>
         </div>
     </div>
     <section class="bg-white dark:bg-gray-900">
@@ -567,53 +549,8 @@
                                     </a>
                                 </div>
                             </div>
-
-                            <section class="bg-white dark:bg-gray-900">
-                                <div class="container px-6 py-10 mx-auto">
-                                    <h1
-                                        class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
-                                    </h1>
-                                    <div
-                                        class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-                                        <div
-                                            class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
-                                            <span class="inline-block text-blue-500 dark:text-blue-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
-                                                </svg>
-                                            </span>
-
-                                            <h1
-                                                class="text-2xl font-semibold text-gray-700 capitalize dark:text-white">
-                                                Formulir Permohonan Pindah WNI Antar Provinsi (F-1.36)</h1>
-
-                                            <p class="text-gray-500 dark:text-gray-300">
-                                                Formulir yang digunakan untuk mengurus perpindahan tempat tinggal WNI
-                                                antar provinsi.
-                                            </p>
-
-                                            <a href="/fPPW"
-                                                class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-200 transform bg-blue-100 rounded-full dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
                     </div>
             </div>
             </div>
-</body>
-
-</html>
+</x-app-layout>
