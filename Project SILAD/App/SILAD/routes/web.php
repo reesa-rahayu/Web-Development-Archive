@@ -118,6 +118,8 @@ Route::view('/admin', 'admin.dashboard')
     // ->middleware(['auth', 'admin'])
     // ->name('dashboard')
 ;
+Route::view('/admin/profile', 'admin.profile');
+
 Route::view('/admin/surat/ajuan', 'admin.ajuansurat');
 Route::view('/admin/surat/arsip', 'admin.suratselesai');
 Route::view('/admin/ajuan/tolak', 'admin.menolak');
