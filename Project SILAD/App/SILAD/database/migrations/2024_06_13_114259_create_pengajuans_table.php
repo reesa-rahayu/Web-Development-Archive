@@ -29,7 +29,7 @@ return new class extends Migration
             $table->dateTime("waktu_pengajuan")->timestamps();
             $table->dateTime("waktu_konfirmasi");
             $table->integer("status")->default(0);
-            $table->array("deskripsi");
+            $table->text("deskripsi");
         });
     }
 
