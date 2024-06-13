@@ -15,7 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text("pertanyaan");
-            $table->text("jawaban");
+            $table->foreignId('pengirim_id')->constrained(
+                table: 'users',
+                indexName: 'pengirim'
+            );
+            $table->text("jawaban")->nullable();
             $table->boolean("isFAQ")->default(false);
         });
     }
