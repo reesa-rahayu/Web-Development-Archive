@@ -14,6 +14,23 @@ return new class extends Migration
         Schema::create('surats', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nomor')->unique();
+            $table->string('nama');
+            $table->foreignId('category_id')->constrained(
+                table: 'categories',
+                indexName: 'kategori_surat'
+            );
+            $table->foreignId('pengajuan_id')->constrained(
+                table: 'pengajuans',
+                indexName: 'pengajuan_id'
+            );
+            $table->foreignId('pejabat_id')->constrained(
+                table: 'pejabats',
+                indexName: 'penandatangan'
+            );
+            $table->dateTime('tanggal_terbit');
+            $table->dateTime('tanggal_kadaluarsa');
+            $table->text('keterangan')->nullable();
         });
     }
 

@@ -14,6 +14,22 @@ return new class extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('pemohon_id')->constrained(
+                table: 'users',
+                indexName: 'pemohon'
+            );
+            $table->foreignId('category_id')->constrained(
+                table: 'admins',
+                indexName: 'kategori'
+            );
+            // $table->foreignId('peninjau_id')->constrained(
+            //     table: 'admins',
+            //     indexName: 'peninjau'
+            // );
+            $table->dateTime("waktu_pengajuan")->timestamps();
+            $table->dateTime("waktu_konfirmasi");
+            $table->integer("status")->default(0);
+            $table->array("deskripsi");
         });
     }
 

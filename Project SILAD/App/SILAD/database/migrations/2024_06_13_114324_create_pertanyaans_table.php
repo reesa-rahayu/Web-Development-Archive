@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('pertanyaans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->text("pertanyaan");
+            $table->text("jawaban");
+            $table->boolean("isFAQ")->default(false);
         });
     }
 
