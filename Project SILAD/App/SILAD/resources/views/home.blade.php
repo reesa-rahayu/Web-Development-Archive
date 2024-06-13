@@ -8,7 +8,7 @@
                     Sistem Informasi Layanan Administrasi Desa yang mampu membantu Anda untuk melakukan pelayanan
                     administrasi desa secara mudah dan cepat. Aplikasi ini dibuat khusus untuk warga Desa Jatiwates yang
                     ingin mengurus dokumen desa dengan efektif dan efisien.</p>
-                <a href="/layanan/umum"
+                <a href="/admin/"
                     class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                     Mulai Sekarang!
                     <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20"

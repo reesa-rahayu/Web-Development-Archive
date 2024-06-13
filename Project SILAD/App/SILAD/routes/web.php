@@ -101,8 +101,8 @@ Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
     ->name('fRTMS');
 
 Route::view('/FAQ', 'FAQ.faq');
-
-Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan');
+Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan')
+    ->middleware(['auth', 'verified']);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -111,6 +111,31 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+//admin
+Route::view('/admin/login', '_login');
+Route::view('/admin', 'admin.dashboard')
+    // ->middleware(['auth', 'admin'])
+    // ->name('dashboard')
+;
+Route::view('/admin/surat/ajuan', 'admin.ajuansurat');
+Route::view('/admin/surat/arsip', 'admin.suratselesai');
+Route::view('/admin/ajuan/tolak', 'admin.menolak');
+Route::view('/admin/ajuan/terima', 'admin.konfirmasisurat');
+
+Route::view('/admin/dokdesa', 'admin.dokdesa');
+Route::view('/admin/dokdesa/tambah', 'admin.tambahdokdesa');
+Route::view('/admin/dokpenduduk', 'admin.dokpenduduk');
+Route::view('/admin/faq', 'admin.faq');
+Route::view('/admin/users', 'admin.kelolauser');
+
+
+
+
+
+//dummy test
+Route::view('/logg', '_login');
+Route::view('/regg', '_register');
 
 
 require __DIR__ . '/auth.php';
