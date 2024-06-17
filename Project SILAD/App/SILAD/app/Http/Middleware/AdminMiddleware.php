@@ -6,15 +6,18 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+// app/Http/Middleware/AdminMiddleware.php
+
+use Illuminate\Auth\Middleware\Authenticate;
+
+class AdminMiddleware extends Authenticate
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    protected function redirectTo($request)
     {
-        return $next($request);
+        if (!$request->user() || !$request->user()->role() == 'admin') {
+            return abort(403);
+        }
+
+        return parent::redirectTo($request);
     }
 }

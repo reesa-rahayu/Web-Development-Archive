@@ -3,14 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Google\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Model
 {
-    use HasFactory, Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +20,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
         'password',
     ];
 
@@ -29,11 +29,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'name',
         'password',
-        'remember_token',
     ];
 
-    protected $guard = 'web';
+    protected $guard = 'admin';
     /**
      * Get the attributes that should be cast.
      *
@@ -45,23 +45,5 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
-    }
-
-    public function pengajuan(): HasMany
-    {
-        return $this->hasMany(Pengajuan::class, 'pengajuan_id');
-    }
-    public function pertanyaan(): HasMany
-    {
-        return $this->hasMany(Pertanyaan::class, 'pengajuan_id');
-    }
-    public function surat(): HasMany
-    {
-        return $this->hasMany(Surat::class, 'surat_id');
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->is_admin;
     }
 }

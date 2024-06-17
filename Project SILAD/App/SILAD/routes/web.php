@@ -1,9 +1,11 @@
 <?php
 
 use App\Models\User;
+use Livewire\Livewire;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 Route::view('/', 'home');
 
@@ -113,17 +115,42 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-
 //test login
-Route::get('/admin', [HomeController::class, 'login']);
+// Route::middleware(['admin'])->group(function () {
+//     // Rute yang hanya dapat diakses oleh admin
+//     Route::get('/admin', function () {
+//         return view('admin.dashboard');
+//     });
+//     Route::get('/admin/dashboard', function () {
+//         return view('admin.dashboard');
+//     });
+//     Route::view('/admin/profile', 'admin.profile');
+//     Route::view('/admin/surat/ajuan', 'admin.ajuansurat');
+//     Route::view('/admin/surat/arsip', 'admin.suratselesai');
+//     Route::view('/admin/ajuan/tolak', 'admin.menolak');
+//     Route::view('/admin/ajuan/terima', 'admin.konfirmasisurat');
 
-//admin
-// Route::view('admin', 'admin.dashboard')
-//     ->middleware(['auth', 'verified'])
-//     ->name('dashboard');
+//     Route::view('/admin/dokdesa', 'admin.dokdesa');
+//     Route::view('/admin/dokdesa/tambah', 'admin.tambahdokdesa');
+//     Route::view('/admin/dokpenduduk', 'admin.dokpenduduk');
+//     Route::view('/admin/faq', 'admin.faq');
+//     Route::view('/admin/users', 'admin.kelolauser');
+// });
 
+// Route::middleware(['auth', 'admin'])->group(function () {
+//     Route::get('/admin/dashboard', \App\Http\Livewire\AdminLogin::class)->name('admin.dashboard');
+// });
+
+
+// Route::get('/admin/login', Livewire::component('admin-login'))->name('admin.login');
+
+Route::get('/admin', function () {
+    return view('admin.dashboard');
+});
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
 Route::view('/admin/profile', 'admin.profile');
-
 Route::view('/admin/surat/ajuan', 'admin.ajuansurat');
 Route::view('/admin/surat/arsip', 'admin.suratselesai');
 Route::view('/admin/ajuan/tolak', 'admin.menolak');
@@ -135,13 +162,10 @@ Route::view('/admin/dokpenduduk', 'admin.dokpenduduk');
 Route::view('/admin/faq', 'admin.faq');
 Route::view('/admin/users', 'admin.kelolauser');
 
-
-
-
-
 //dummy test
-Route::view('/logg', '_login');
+Route::view('/logg', 'admin._login');
 Route::view('/regg', '_register');
 
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/admin-auth.php';
