@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Models\Pertanyaan;
 
 Route::view('/', 'home');
 
@@ -102,6 +103,10 @@ Route::view('/fPPW', 'layanan_penduduk.fPPW')
 Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
     ->middleware(['auth', 'verified'])
     ->name('fRTMS');
+
+Route::get('/posts', function () {
+    return view('posts', ['faqs' => Pertanyaan::all()]);
+});
 
 Route::view('/FAQ', 'FAQ.faq');
 Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan')
