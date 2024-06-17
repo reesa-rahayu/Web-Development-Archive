@@ -27,9 +27,13 @@ rules([
 
 $register = function () {
     $validated = $this->validate();
+
     $validated['password'] = Hash::make($validated['password']);
+
     event(new Registered(($user = User::create($validated))));
+
     Auth::login($user);
+
     $this->redirect(route('dashboard', absolute: false), navigate: true);
 };
 
@@ -54,12 +58,36 @@ $register = function () {
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
 
+                    <!-- NIK -->
+                    <div>
+                        <x-input-label for="nik" :value="__('NIK')" />
+                        <x-text-input wire:model="nik" id="nik" class="block mt-1 w-full" type="text"
+                            name="nik" required autofocus autocomplete="nik" />
+                        <x-input-error :messages="$errors->get('nik')" class="mt-2" />
+                    </div>
+
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" />
                         <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email"
                             name="email" required autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div>
+                        <x-input-label for="phone" :value="__('Nomor Telepon')" />
+                        <x-text-input wire:model="phone" id="phone" class="block mt-1 w-full" type="text"
+                            name="phone" required autocomplete="phone" />
+                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                    </div>
+
+                    <!-- Address -->
+                    <div class="col-span-2">
+                        <x-input-label for="address" :value="__('Alamat')" />
+                        <x-text-input wire:model="address" id="address" class="block mt-1 w-full" type="text"
+                            name="address" required autocomplete="address" />
+                        <x-input-error :messages="$errors->get('address')" class="mt-2" />
                     </div>
 
                     <!-- Password -->
@@ -75,11 +103,14 @@ $register = function () {
                     <!-- Confirm Password -->
                     <div>
                         <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
                         <x-text-input wire:model="password_confirmation" id="password_confirmation"
                             class="block mt-1 w-full" type="password" name="password_confirmation" required
                             autocomplete="new-password" />
+
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                     </div>
+
                     <div class="text-right flex items-center justify-end mt-4 col-span-2">
                         <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                             href="{{ route('login') }}" wire:navigate>
@@ -87,6 +118,7 @@ $register = function () {
                             <span class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
                                 Masuk</span>
                         </a>
+
                         <x-primary-button class=" text-right ms-4">
                             {{ __('Ajukan Pendaftaran') }}
                         </x-primary-button>

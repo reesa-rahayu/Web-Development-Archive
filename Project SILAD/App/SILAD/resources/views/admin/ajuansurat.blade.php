@@ -22,40 +22,26 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">AJ001</td>
-                        <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                        <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Keterangan Penghasilan</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ url('/konfirmasisurat') }}" class="inline-block">
-                                <button
-                                    class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">AJ001</td>
-                        <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                        <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                        <td class="px-6 py-4 whitespace-nowrap">Keterangan Penghasilan</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span
-                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ url('/konfirmasisurat') }}" class="inline-block">
-                                <button
-                                    class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($ajuans as $ajuan)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->author->id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->author->name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->waktu_pengajuan }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->category->nama }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->status }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span
+                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ url('admin/ajuan/terima') }}" class="inline-block">
+                                    <button
+                                        class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

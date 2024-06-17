@@ -1,5 +1,5 @@
 <header class="w-full items-center bg-header py-2 px-6 hidden sm:flex">
-    <h1 class="text-3xl text-black pb-2 py-4">Dashboard</h1>
+    <h1 class="text-3xl text-black pb-2 py-4">{{ $slot }}</h1>
     <div class="w-1/2"></div>
     <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
         <button @click="isOpen = !isOpen"

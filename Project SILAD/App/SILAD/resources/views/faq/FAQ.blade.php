@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="flex flex-wrap mx-4">
-                    <div class="w-full px-4 lg:w-1/2">
+                    <div class="w-full px-4 grid grid-cols-2 gap-4">
                         @foreach ($faqs as $faq)
                             <div
                                 class="w-full p-4 mb-8 bg-slate-50 dark:bg-gray-900 rounded-lg shadow-lg sm:p-8 lg:px-6 xl:px-8">

@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'NIK',
+        'alamat',
+        'kelamin',
+        'tanggal_lahir'
     ];
 
     /**
@@ -31,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'NIK'
     ];
 
     protected $guard = 'web';

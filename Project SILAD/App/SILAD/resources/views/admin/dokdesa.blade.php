@@ -35,57 +35,34 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <td class="px-3 py-4 whitespace-nowrap">
-                        DD001
-                    </td>
-                    <td class="px-9 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Dokumen Anggaran Desa 2024</div>
-                        <div class="text-sm text-gray-500">Anggaran Desa adalah...</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        09-06-2024
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        09-06-2025
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Dipublish
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Unpublish</a>
-                        <a href="#" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-3 py-4 whitespace-nowrap">
-                        DD002
-                    </td>
-                    <td class="px-9 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">Daftar Ketua RT 2024</div>
-                        <div class="text-sm text-gray-500">Ketua RT terpilih tahun 2024...</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        09-06-2024
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        09-06-2025
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                            Disembunyikan
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                        <a href="#" class="text-indigo-600 hover:text-green-900">Publish</a>
-                        <a href="#" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
-                    </td>
-                </tr>
-                <!-- More rows... -->
+                @foreach ($docs as $doc)
+                    <tr>
+                        <td class="px-3 py-4 whitespace-nowrap">
+                            {{ $doc->id }}
+                        </td>
+                        <td class="px-9 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{ $doc->nama }}</div>
+                            <div class="text-sm text-gray-500">{{ $doc->deskirpsi }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $doc->tanggal_berlaku }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $doc->tanggal_kadaluarsa }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span
+                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 {{ $doc->status == 'dipublish' ? 'text-green-800' : 'text-red-800' }} ">
+                                {{ $doc->status }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
+                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Unpublish</a>
+                            <a href="#" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
+                        </td>
+                    </tr>
+                @endforeach
+
 
             </tbody>
         </table>

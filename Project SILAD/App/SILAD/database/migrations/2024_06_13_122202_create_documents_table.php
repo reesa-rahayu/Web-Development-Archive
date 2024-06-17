@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->text('deskripsi');
+            $table->string('status')->default('dipublish');
+            $table->datetime('tanggal_berlaku');
+            $table->datetime('tanggal_kadaluarsa');
             $table->timestamps();
         });
     }

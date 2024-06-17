@@ -22,11 +22,7 @@ return new class extends Migration
                 table: 'categories',
                 indexName: 'kategori'
             );
-            // $table->foreignId('peninjau_id')->constrained(
-            //     table: 'admins',
-            //     indexName: 'peninjau'
-            // );
-            $table->dateTime("waktu_pengajuan")->timestamps();
+            $table->dateTime("waktu_pengajuan")->default(now());
             $table->dateTime("waktu_konfirmasi");
             $table->integer("status")->default(0);
             $table->text("deskripsi");

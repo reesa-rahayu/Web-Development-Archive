@@ -33,11 +33,6 @@
             <i class="fas fa-table mr-3"></i>
             Dokumen Desa
         </a>
-        <a href="{{ url('admin/dokpenduduk') }}"
-            class="{{ Request::is('admin/dokpenduduk') ? 'active-nav-link' : '' }} flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-align-left mr-3"></i>
-            Dokumen Penduduk
-        </a>
         <a href="{{ url('admin/faq') }}"
             class="{{ Request::is('admin/faq') ? 'active-nav-link' : '' }} flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class="fas fa-tablet-alt mr-3"></i>

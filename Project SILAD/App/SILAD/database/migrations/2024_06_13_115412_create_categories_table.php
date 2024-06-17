@@ -16,6 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string("nama");
             $table->string("kode");
+            $table->text("keterangan");
+            $table->string("jenis");
         });
     }
 

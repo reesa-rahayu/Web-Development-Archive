@@ -6,7 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FSKUController;
+use App\Http\Controllers\FSKUController as ControllersFSKUController;
+use App\Models\Admin;
+use App\Models\Document;
+use App\Models\Pengajuan;
 use App\Models\Pertanyaan;
+use App\Models\Surat;
 
 Route::view('/', 'home');
 
@@ -17,12 +23,19 @@ Route::view('/fSKBI', 'layanan_umum.fSKBI')
     ->middleware(['auth', 'verified'])
     ->name('fSKBI');
 
-Route::get('/fSKU', function (User $user) {
-    return view('layanan_umum.fSKU', ['title' => 'Formulir SKU', 'user_info' => $user]);
-})->middleware(['auth', 'verified'])->name('SKU');
+// Route::get('/fSKU', function (User $user) {
+//     return view('layanan_umum.fSKU', ['title' => 'Formulir SKU', 'info' => $user]);
+// })->middleware(['auth', 'verified'])->name('SKU');
+
+// Route to show the form
+Route::get('/fSKU', [FSKUController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('SKU');
+
+// Route to submit the form
+Route::post('fsku-submit', [FSKUController::class, 'submitForm'])->name('fsku-submit');
 
 Route::get('/fSKBI', function (User $user) {
-    return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'user_info' => $user]);
+    return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'info' => $user]);
 })->middleware(['auth', 'verified'])->name('SKBI');
 
 Route::view('/fSKD', 'layanan_umum.fSKD')
@@ -104,11 +117,10 @@ Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
     ->middleware(['auth', 'verified'])
     ->name('fRTMS');
 
-Route::get('/posts', function () {
-    return view('posts', ['faqs' => Pertanyaan::all()]);
+Route::get('/FAQ', function () {
+    return view('faq.FAQ', ['faqs' => Pertanyaan::all()]);
 });
 
-Route::view('/FAQ', 'FAQ.faq');
 Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan')
     ->middleware(['auth', 'verified']);
 
@@ -149,23 +161,36 @@ Route::view('profile', 'profile')
 
 // Route::get('/admin/login', Livewire::component('admin-login'))->name('admin.login');
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+Route::get('admin', function () {
+    return view('admin.dashboard', ['title' => 'Dashboard']);
 });
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+Route::get('admin/dashboard', function () {
+    return view('admin.dashboard', ['title' => 'Dashboard']);
 });
-Route::view('/admin/profile', 'admin.profile');
-Route::view('/admin/surat/ajuan', 'admin.ajuansurat');
-Route::view('/admin/surat/arsip', 'admin.suratselesai');
-Route::view('/admin/ajuan/tolak', 'admin.menolak');
-Route::view('/admin/ajuan/terima', 'admin.konfirmasisurat');
-
-Route::view('/admin/dokdesa', 'admin.dokdesa');
-Route::view('/admin/dokdesa/tambah', 'admin.tambahdokdesa');
-Route::view('/admin/dokpenduduk', 'admin.dokpenduduk');
-Route::view('/admin/faq', 'admin.faq');
-Route::view('/admin/users', 'admin.kelolauser');
+Route::get('admin/surat/ajuan', function () {
+    return view('admin.ajuansurat', ['title' => 'Ajuan Surat', 'ajuans' => Pengajuan::all()]);
+});
+Route::get('admin/surat/arsip', function () {
+    return view('admin.suratselesai', ['title' => 'Arsip Surat', 'surats' => Surat::all()]);
+});
+Route::get('admin/ajuan/tolak', function () {
+    return view('admin.menolak');
+});
+Route::get('admin/ajuan/terima', function () {
+    return view('admin.konfirmasisurat');
+});
+Route::get('admin/dokdesa', function () {
+    return view('admin.dokdesa', ['title' => 'Dokumen Desa', 'docs' => Document::all()]);
+});
+Route::get('admin/dokdesa/tambah', function () {
+    return view('admin.tambahdokdesa');
+});
+Route::get('admin/faq', function () {
+    return view('admin.faq', ['title' => 'FAQ', 'faqs' => Pertanyaan::all()]);
+});
+Route::get('admin/users', function () {
+    return view('admin.kelolauser', ['title' => 'Kelola User', 'users' => User::all()]);
+});
 
 //dummy test
 Route::view('/logg', 'admin._login');
