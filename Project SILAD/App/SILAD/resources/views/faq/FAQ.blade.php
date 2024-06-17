@@ -24,127 +24,28 @@
                 </div>
                 <div class="flex flex-wrap mx-4">
                     <div class="w-full px-4 lg:w-1/2">
-                        <div
-                            class="w-full p-4 mb-8 bg-slate-50 dark:bg-gray-900 rounded-lg shadow-lg sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-black dark:text-white">Bagaimana cara saya mendaftar untuk
-                                        menggunakan aplikasi
-                                        ini?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24"
-                                            class="text-black dark:text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-300">Untuk
-                                    mendaftar, Anda dapat
-                                    mengikuti langkah-langkah pendaftaran yang tersedia di aplikasi atau menghubungi
-                                    pihak terkait untuk bantuan lebih lanjut.</p>
-                            </details>
-                        </div>
-                        <div
-                            class="w-full p-4 mb-8 bg-gray-900 rounded-lg shadow-lg dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-white">Apa saja fitur utama yang tersedia dalam aplikasi
-                                        ini?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24" class="text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-300">Fitur utama aplikasi ini
-                                    meliputi pengajuan layanan administrasi desa, pembaruan informasi pribadi, dan
-                                    kontak dukungan.</p>
-                            </details>
-                        </div>
-                        <div
-                            class="w-full p-4 mb-8 bg-gray-900 rounded-lg shadow-lg dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-white">Bagaimana cara mengajukan permohonan layanan administrasi
-                                        desa melalui
-                                        aplikasi ini?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24" class="text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-300">Anda dapat mengajukan
-                                    permohonan layanan melalui fitur yang tersedia di dalam aplikasi dengan mengisi
-                                    formulir yang diperlukan.</p>
-                            </details>
-                        </div>
-                    </div>
-                    <div class="w-full px-4 lg:w-1/2">
-                        <div
-                            class="w-full p-4 mb-8 bg-gray-900 rounded-lg shadow-lg dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-white">Apakah aplikasi ini aman digunakan untuk mengirimkan
-                                        informasi
-                                        sensitif?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24" class="text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-300">Aplikasi ini dirancang dengan
-                                    standar keamanan tinggi untuk melindungi informasi pribadi pengguna.</p>
-                            </details>
-                        </div>
-                        <div
-                            class="w-full p-4 mb-8 bg-gray-900 rounded-lg shadow-lg dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-white">Apakah ada biaya yang terkait dengan penggunaan aplikasi
-                                        ini?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24" class="text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-300">Penggunaan aplikasi ini
-                                    gratis, jadi tidak diperlukan biaya untuk menggunakannya.</p>
-                            </details>
-                        </div>
-                        <div
-                            class="w-full p-4 mb-8 bg-gray-900 rounded-lg shadow-lg dark:bg-dark-2 sm:p-8 lg:px-6 xl:px-8">
-                            <details class="group">
-                                <summary class="flex cursor-pointer list-none items-center justify-between font-medium">
-                                    <span class="text-white">Apakah aplikasi ini memiliki dukungan untuk berbagai bahasa
-                                        atau hanya dalam
-                                        satu bahasa?</span>
-                                    <span class="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="1.5" viewBox="0 0 24 24" width="24"
-                                            class="text-white">
-                                            <path d="M6 9l6 6 6-6"></path>
-                                        </svg>
-                                    </span>
-                                </summary>
-                                <p class="group-open:animate-fadeIn mt-3 text-gray-300">Aplikasi ini mungkin
-                                    mendukung berbagai bahasa untuk meningkatkan aksesibilitas pengguna dari berbagai
-                                    latar belakang.</p>
-                            </details>
-                        </div>
+                        @foreach ($faqs as $faq)
+                            <div
+                                class="w-full p-4 mb-8 bg-slate-50 dark:bg-gray-900 rounded-lg shadow-lg sm:p-8 lg:px-6 xl:px-8">
+                                <details class="group">
+                                    <summary
+                                        class="flex cursor-pointer list-none items-center justify-between font-medium">
+                                        <span class="text-black dark:text-white">{{ $faq->pertanyaan }}</span>
+                                        <span class="transition group-open:rotate-180">
+                                            <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                                stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="1.5" viewBox="0 0 24 24" width="24"
+                                                class="text-black dark:text-white">
+                                                <path d="M6 9l6 6 6-6"></path>
+                                            </svg>
+                                        </span>
+                                    </summary>
+                                    <p class="group-open:animate-fadeIn mt-3 text-gray-800 dark:text-gray-300">
+                                        {{ $faq->jawaban }}
+                                    </p>
+                                </details>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
