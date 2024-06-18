@@ -19,20 +19,19 @@ Route::view('/', 'home');
 //layanan umum
 Route::view('layanan/umum', 'layanan_umum.dashboard');
 
-Route::view('/fSKBI', 'layanan_umum.fSKBI')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKBI');
-
 // Route::get('/fSKU', function (User $user) {
 //     return view('layanan_umum.fSKU', ['title' => 'Formulir SKU', 'info' => $user]);
 // })->middleware(['auth', 'verified'])->name('SKU');
 
 // Route to show the form
 Route::get('/fSKU', [FSKUController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('SKU');
+    ->middleware(['auth', 'verified']);
 
 // Route to submit the form
-Route::post('fsku-submit', [FSKUController::class, 'submitForm'])->name('fsku-submit');
+Route::post('/submit-fsku', [FSKUController::class, 'submitForm'])->name('submit-fsku');
+
+
+Route::post('/generate-fsku', [FSKUController::class, 'pdfGenerate'])->name('generate-fsku');
 
 Route::get('/fSKBI', function (User $user) {
     return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'info' => $user]);

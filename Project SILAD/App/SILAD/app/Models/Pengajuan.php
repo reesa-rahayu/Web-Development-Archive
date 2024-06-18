@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pengajuan extends Model
 {
+    protected $fillable = [
+        'pemohon_id',
+        'category_id',
+        'waktu_konfirmasi',
+        'status',
+        'deskripsi'
+    ];
+
     use HasFactory;
 
     public function author(): BelongsTo
