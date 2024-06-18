@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pengajuan extends Model
 {
@@ -26,8 +27,8 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    public function surat(): BelongsTo
+    public function surats(): HasMany
     {
-        return $this->belongsTo(Surat::class);
+        return $this->hasMany(Surat::class);
     }
 }

@@ -9,7 +9,7 @@
                             <tr>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Id Ajuan</th>
+                                    Nomor Surat</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     NIK Penduduk</th>
@@ -18,7 +18,7 @@
                                     Nama Penduduk</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Selesai</th>
+                                    Tanggal Terbit</th>
                                 <th
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Kategori</th>
@@ -31,38 +31,30 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">AJ002</td>
-                                <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                                <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Keterangan Pindah</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Selesai</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{ url('/cetaksurat') }}" class="inline-block">
-                                        <button
-                                            class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Cetak</button>
-                                    </a>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">AJ002</td>
-                                <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                                <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Keterangan Pindah</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Selesai</span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{ url('/cetaksurat') }}" class="inline-block">
-                                        <button
-                                            class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Cetak</button>
-                                    </a>
-                            </tr>
+                            @foreach ($surats as $surat)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $surat->nomor }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $surat->pemilik->NIK }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $surat->pemilik->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $surat->tanggal_terbit }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $surat->category->nama }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-gray-500">Selesai</span>
+
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="{{ route('cetak-surat', $surat->id) }}" class="inline-block">
+                                            <button
+                                                class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Cetak</button>
+                                        </a>
+                                        <a href="{{ route('lihat-surat', $surat->id) }}" target="_blank"
+                                            class="inline-block">
+                                            <button
+                                                class="px-4 py-2 font-medium text-white bg-gray-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Lihat</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

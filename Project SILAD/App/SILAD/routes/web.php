@@ -1,18 +1,22 @@
 <?php
 
 use App\Models\User;
-use Livewire\Livewire;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\FSKUController;
-use App\Http\Controllers\FSKUController as ControllersFSKUController;
 use App\Models\Admin;
+use App\Models\Surat;
+use Livewire\Livewire;
 use App\Models\Document;
 use App\Models\Pengajuan;
 use App\Models\Pertanyaan;
-use App\Models\Surat;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FSKUController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ViewController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CetakController;
+use App\Http\Controllers\ConfirmController;
+use App\Http\Controllers\FSKUController as ControllersFSKUController;
+use App\Http\Controllers\LihatController;
 
 Route::view('/', 'home');
 
@@ -29,9 +33,6 @@ Route::get('/fSKU', [FSKUController::class, 'index'])
 
 // Route to submit the form
 Route::post('/submit-fsku', [FSKUController::class, 'submitForm'])->name('submit-fsku');
-
-
-Route::post('/generate-fsku', [FSKUController::class, 'pdfGenerate'])->name('generate-fsku');
 
 Route::get('/fSKBI', function (User $user) {
     return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'info' => $user]);
@@ -171,14 +172,18 @@ Route::get('admin/dashboard', function () {
 
 
 Route::get('admin/surat/ajuan', function () {
-    return view('admin.ajuansurat', ['title' => 'Ajuan Surat', 'ajuans' => Pengajuan::all()]);
+    return view('admin.ajuansurat', ['title' => 'Ajuan Surat', 'ajuans' => Pengajuan::where('status', 0)->get()]);
 });
 Route::get('admin/surat/ajuan/{ajuan:id}', function (Pengajuan $ajuan) {
     return view('admin.detailpengajuan', ['ajuan' => $ajuan]);
 });
+Route::get('admin/surat/ajuan/{ajuan:id}/konfirmasi', function (Pengajuan $ajuan) {
+    return view('admin.detailpengajuan', ['ajuan' => $ajuan]);
+});
+Route::get('admin/surat/ajuan/{ajuan:id}/konfirmasi', [ConfirmController::class, 'confirmSurat'])->name('comfirm-surat');
 
-
-
+Route::get('/admin/surat/arsip/cetak/{surat:id}', [CetakController::class, 'cetakSurat'])->name('cetak-surat');
+Route::get('/admin/surat/arsip/lihat/{surat:id}', [LihatController::class, 'lihatSurat'])->name('lihat-surat');
 
 Route::get('admin/surat/arsip', function () {
     return view('admin.suratselesai', ['title' => 'Arsip Surat', 'surats' => Surat::all()]);

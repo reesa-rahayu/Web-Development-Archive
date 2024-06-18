@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nomor')->unique();
-            $table->string('nama');
             $table->foreignId('category_id')->constrained(
                 table: 'categories',
                 indexName: 'kategori_surat'
@@ -27,10 +26,6 @@ return new class extends Migration
             $table->foreignId('pemilik_id')->constrained(
                 table: 'users',
                 indexName: 'user_id'
-            );
-            $table->foreignId('pejabat_id')->constrained(
-                table: 'pejabats',
-                indexName: 'penandatangan'
             );
             $table->dateTime('tanggal_terbit');
             $table->dateTime('tanggal_kadaluarsa');

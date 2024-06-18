@@ -39,7 +39,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="/admin/surat/ajuan/{{ $ajuan['id'] }}" class="inline-block">
                                     <button
-                                        class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
+                                        class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Lihat</button>
                                 </a>
                             </td>
                         </tr>

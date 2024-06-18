@@ -1,15 +1,20 @@
+<?php
+use Carbon\Carbon;
+$currentTime = Carbon::now();
+$indoDateFormat = 'd F Y';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Keterangan Usaha</title>
+    <title>{{ $title }}</title>
     <link rel="shortcut icon" href="https://i.pinimg.com/564x/af/f2/8a/aff28acbd67bef1684bc93010f962db9.jpg">
     @vite('resources/css/app.css')
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Times New Roman';
         }
     </style>
 </head>
@@ -21,23 +26,29 @@
             <p style="text-align:center;">KECAMATAN TEMBELANG</p>
             <p style="text-align:center;">DESA JATIWATES</p>
         </div>
-        <div class="judul-surat">
-            <p style="text-align:center;">SURAT KETERANGAN USAHA</p>
-            <p style="text-align:center;">Nomor : <span id="nomor-surat"></span></p>
-        </div>
-        <div class="pt-4">
-            <p>Yang bertandatangan dibawah ini selaku Kepala Desa Jatiwates, Kecamatan Tembelang, Kabupaten Jatiwates,
-                dengan ini menerangkan bahwa:</p>
-        </div>
+
+        {{ $slot }}
         <div class="mt-4 text-justify">
-            {{ $slot }}
             <div class="pt-4">
-                <p>Adapun Surat Keterangan Usaha ini dibuat untuk dipergunakan sebagaimana mestinya dan bagi instansi
+                <p>Adapun {{ $title }} ini dibuat untuk dipergunakan sebagaimana mestinya dan bagi instansi
                     yang
                     berkepentingan menjadi bahan periksa adanya.</p>
-                <p>Dikeluarkan di: Desa Jatiwates, Kecamatan Tembelang</p>
-                <p>Pada Tanggal:&nbsp; <span id="tanggal"></span></p>
+                <table>
+                    <tr>
+                        <td>Dikeluarkan di&nbsp;</td>
+                        <td>:</td>
+                        <td>Desa Jatiwates, Kecamatan Tembelang</td>
+                    </tr>
+                    <tr>
+                        <td>Pada Tanggal&nbsp;</td>
+                        <td>:</td>
+                        <td><span id="tanggal">{{ $currentTime->format($indoDateFormat) }}</span></td>
+                    </tr>
+                </table>
                 <p style="text-align:right;">Kepala Desa Jatiwates</p>
+                <div id='ttd' style="height: 7rem; display: flex; justify-content:flex-end;">
+                    <img style="height: 7rem; float: right;" src="{{ asset('images/ttd.png') }}" alt="">
+                </div>
                 <div style="text-align:right;">A. Yudin Karimin</div>
             </div>
         </div>
