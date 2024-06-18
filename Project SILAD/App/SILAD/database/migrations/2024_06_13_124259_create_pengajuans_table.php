@@ -22,10 +22,10 @@ return new class extends Migration
                 table: 'categories',
                 indexName: 'kategori'
             );
-            $table->dateTime("waktu_pengajuan")->default(now());
-            $table->dateTime("waktu_konfirmasi");
-            $table->integer("status")->default(0);
             $table->text("deskripsi");
+            $table->dateTime("waktu_pengajuan")->default(now());
+            $table->dateTime("waktu_konfirmasi")->nullable();
+            $table->integer("status")->default(0);
         });
     }
 

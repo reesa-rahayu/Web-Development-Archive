@@ -13,12 +13,12 @@ class Pengajuan extends Model
         'category_id',
         'waktu_konfirmasi',
         'status',
-        'deskripsi'
+        'deskripsi',
     ];
 
     use HasFactory;
 
-    public function author(): BelongsTo
+    public function pemohon(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

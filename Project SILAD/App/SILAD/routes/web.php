@@ -131,6 +131,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+Route::view('/form/FSKU', 'form.FSKU');
+
 //test login
 // Route::middleware(['admin'])->group(function () {
 //     // Rute yang hanya dapat diakses oleh admin
@@ -166,12 +168,22 @@ Route::get('admin', function () {
 Route::get('admin/dashboard', function () {
     return view('admin.dashboard', ['title' => 'Dashboard']);
 });
+
+
 Route::get('admin/surat/ajuan', function () {
     return view('admin.ajuansurat', ['title' => 'Ajuan Surat', 'ajuans' => Pengajuan::all()]);
 });
+Route::get('admin/surat/ajuan/{ajuan:id}', function (Pengajuan $ajuan) {
+    return view('admin.detailpengajuan', ['ajuan' => $ajuan]);
+});
+
+
+
+
 Route::get('admin/surat/arsip', function () {
     return view('admin.suratselesai', ['title' => 'Arsip Surat', 'surats' => Surat::all()]);
 });
+
 Route::get('admin/ajuan/tolak', function () {
     return view('admin.menolak');
 });
