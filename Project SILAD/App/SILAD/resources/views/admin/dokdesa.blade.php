@@ -23,10 +23,6 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
                     </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Tindakan
-                    </th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -50,10 +46,6 @@
                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 {{ $doc->status == 'dipublish' ? 'text-green-800' : 'text-red-800' }} ">
                                 {{ $doc->status }}
                             </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
-                            <a href="#" class="text-indigo-600 hover:text-indigo-900">Unpublish</a>
-                            <a href="#" class="ml-2 text-red-600 hover:text-red-900">Delete</a>
                         </td>
                     </tr>
                 @endforeach
