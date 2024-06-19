@@ -45,7 +45,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <a href="{{ route('cetak-surat', $surat->id) }}" class="inline-block">
                                             <button
-                                                class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Cetak</button>
+                                                class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Unduh</button>
                                         </a>
                                         <a href="{{ route('lihat-surat', $surat->id) }}" target="_blank"
                                             class="inline-block">

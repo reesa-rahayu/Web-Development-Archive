@@ -26,14 +26,14 @@
                     Lahir</label>
                 <input type="text" id="tempat_lahir" name="tempat_lahir"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    placeholder="" required />
+                    value="{{ auth()->user()->tempat_lahir }}" required />
             </div>
             <div class="mb-5">
                 <label for="tanggal_lahir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal
                     Lahir</label>
                 <input type="date" id="tanggal_lahir" name="tanggal_lahir"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                    placeholder="" required />
+                    value="{{ auth()->user()->tanggal_lahir }}" required />
             </div>
             <div class="mb-5">
                 <label for="nama_usaha" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama
@@ -51,7 +51,7 @@
             </div>
             <div class="mb-5">
                 <label for="religion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-                <select id="religion" name="agama"
+                <select id="religion" name="agama" value="{{ auth()->user()->agama }}"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option>Islam</option>
                     <option>Katolik</option>
@@ -64,7 +64,7 @@
             <div class="mb-5">
                 <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                     Kelamin</label>
-                <select id="gender" name="jenis_kelamin"
+                <select id="gender" name="jenis_kelamin" value="{{ auth()->user()->kelamin }}"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option>Laki-laki</option>
                     <option>Perempuan</option>
@@ -80,7 +80,7 @@
             <div class="mb-5">
                 <label for="no_ktp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">NIK (Nomor
                     KTP)</label>
-                <input type="text" id="no_ktp" name="no_ktp"
+                <input type="text" id="no_ktp" name="no_ktp" value="{{ auth()->user()->NIK }}"
                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                     placeholder="" required />
             </div>

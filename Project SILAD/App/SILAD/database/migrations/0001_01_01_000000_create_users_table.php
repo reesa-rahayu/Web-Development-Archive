@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('NIK')->nullable();
             $table->boolean('kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('agama')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('isVerified')->default(false);

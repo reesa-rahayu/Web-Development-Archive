@@ -24,7 +24,9 @@ class User extends Authenticatable
         'NIK',
         'alamat',
         'kelamin',
-        'tanggal_lahir'
+        'tempat_lahir',
+        'tanggal_lahir',
+        'agama'
     ];
 
     /**
@@ -54,15 +56,15 @@ class User extends Authenticatable
 
     public function pengajuan(): HasMany
     {
-        return $this->hasMany(Pengajuan::class, 'pengajuan_id');
+        return $this->hasMany(Pengajuan::class);
     }
     public function pertanyaan(): HasMany
     {
-        return $this->hasMany(Pertanyaan::class, 'pengajuan_id');
+        return $this->hasMany(Pertanyaan::class);
     }
     public function surat(): HasMany
     {
-        return $this->hasMany(Surat::class, 'surat_id');
+        return $this->hasMany(Surat::class);
     }
 
     public function isAdmin(): bool

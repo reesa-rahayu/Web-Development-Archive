@@ -42,10 +42,6 @@ $logout = function (Logout $logout) {
                         {{ __('Dashboard') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link :href="route('profile')" wire:navigate>
-                        {{ __('Profile') }}
-                    </x-dropdown-link>
-
                     <!-- Authentication -->
                     <button wire:click="logout" class="w-full text-start">
                         <x-dropdown-link>
@@ -68,11 +64,6 @@ $logout = function (Logout $logout) {
                     <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </x-responsive-nav-link>
-
-                    <x-responsive-nav-link :href="route('profile')" wire:navigate>
-                        {{ __('Profile') }}
-                    </x-responsive-nav-link>
-
                     <!-- Authentication -->
                     <button wire:click="logout" class="w-full text-start">
                         <x-responsive-nav-link>

@@ -1,3 +1,9 @@
+<?php
+use App\Models\Pengajuan;
+$ajuans = Pengajuan::where('status', 0)->get();
+$ajuan_total = count(Pengajuan::all());
+$ajuan_selesai = count(Pengajuan::where('status', 1)->get());
+?>
 <x-admin-layout>
     <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-1">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -7,7 +13,7 @@
                     <h4 class="text-lg font-bold text-gray-900 dark:text-white">Total Ajuan Masuk</h4>
                 </div>
                 <div class="mt-4 flex items-center text-sm text-red-500">
-                    <span class="text-5xl mr-1">12</span>
+                    <span class="text-5xl mr-1">{{ $ajuan_total }}</span>
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5 4.707v6.586l-1.146-1.146a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L6 11.293V4.707a.5.5 0 00-1 0zm5 10.586V4a.5.5 0 00-1 0v11.293L7.146 13.854a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L10 15.293zm5-10.586v6.586l-1.146-1.146a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L15 11.293V4.707a.5.5 0 00-1 0z" />
@@ -21,7 +27,7 @@
                     <h4 class="text-lg font-bold text-gray-900 dark:text-white">Total Ajuan Selesai</h4>
                 </div>
                 <div class="mt-4 flex items-center text-sm text-green-500">
-                    <span class="text-5xl mr-1">7</span>
+                    <span class="text-5xl mr-1">{{ $ajuan_selesai }}</span>
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M5 4.707v6.586l-1.146-1.146a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L6 11.293V4.707a.5.5 0 00-1 0zm5 10.586V4a.5.5 0 00-1 0v11.293L7.146 13.854a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L10 15.293zm5-10.586v6.586l-1.146-1.146a.5.5 0 00-.707.707l2 2a.5.5 0 00.707 0l2-2a.5.5 0 00-.707-.707L15 11.293V4.707a.5.5 0 00-1 0z" />
@@ -64,10 +70,6 @@
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Id Ajuan</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                NIK Penduduk</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Nama Penduduk</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Masuk</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Kategori</th>
@@ -78,40 +80,32 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">AJ001</td>
-                            <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                            <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Keterangan Penghasilan</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ url('/konfirmasisurat') }}" class="inline-block">
-                                    <button
-                                        class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">AJ001</td>
-                            <td class="px-6 py-4 whitespace-nowrap">1275xxxxxxxxxxx2</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Viviana</td>
-                            <td class="px-6 py-4 whitespace-nowrap">09-06-2024</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Keterangan Penghasilan</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ url('/konfirmasisurat') }}" class="inline-block">
-                                    <button
-                                        class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Konfirmasi</button>
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($ajuans as $ajuan)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->id }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->waktu_pengajuan }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $ajuan->category->nama }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <?php
+                                        if($ajuan->status == 0){ ?>
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-green-800">Diajukan</span>
+                                    <?php
+                                        }
+                                        else{
+                                            ?>
+                                    <span
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-gray-500">Selesai</span>
+                                    <?php
+                                        } ?>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="/admin/surat/ajuan/{{ $ajuan['id'] }}" class="inline-block">
+                                        <button
+                                            class="px-4 py-2 font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Lihat</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

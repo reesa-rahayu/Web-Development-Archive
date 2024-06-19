@@ -83,10 +83,10 @@
         var myChart = new Chart(chartOne, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['SKU', 'SKAW', 'SKBI', 'SKTM', 'SKD', 'SP'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Jumlah Pengajuan',
+                    data: [1, 0, 0, 0, 0, 0],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -121,10 +121,10 @@
         var myLineChart = new Chart(chartTwo, {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['SKU', 'SKAW', 'SKBI', 'SKTM', 'SKD', 'SP'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Jumlah Pengajuan',
+                    data: [1, 0, 0, 0, 0, 0],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',

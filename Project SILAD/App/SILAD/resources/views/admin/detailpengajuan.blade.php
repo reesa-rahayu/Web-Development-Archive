@@ -31,7 +31,17 @@ $no_surat = '0' . $ajuan->category->id . '.0' . $pengajuanCount . '/KD/VI/' . $c
         </div>
 
         <div class="p-6 space-y-6">
+            <?php
+                if($ajuan->category->id == 1){
+                ?>
             @include('form.FSKU', ['ajuan' => $ajuan, 'no_surat' => $no_surat])
+            <?php
+                } else if($ajuan->category->id == 3){
+                ?>
+            @include('form.FSKTMs', ['ajuan' => $ajuan, 'no_surat' => $no_surat])
+            <?php
+                }
+                ?>
         </div>
 
         <div class="p-6 border-t border-gray-200 rounded-b">
@@ -43,13 +53,12 @@ $no_surat = '0' . $ajuan->category->id . '.0' . $pengajuanCount . '/KD/VI/' . $c
                         value="{{ $no_surat }}" required="">
                 </div>
             </div>
-            <a href="{{ route('konfirmasi.pengajuan', $ajuan['id']) }}?no_surat={{ $no_surat }}"
-                class="inline-block p-6">
+            <a href="{{ route('comfirm-surat', $ajuan['id']) }}?no_surat={{ $no_surat }}" class="inline-block p-6">
                 <button
                     class="text-white bg-green-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     type="submit">Konfirmasi</button>
             </a>
-            <a href="menolak" class="inline-block p-6">
+            <a href="{{ route('tolak-surat', $ajuan['id']) }}?no_surat={{ $no_surat }}" class="inline-block p-6">
                 <button
                     class="text-white bg-red-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     type="submit">Tolak</button>

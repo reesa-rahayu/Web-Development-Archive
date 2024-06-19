@@ -16,41 +16,42 @@
 </head>
 
 <body>
-    <form class="max-w-sm mx-auto">
+    <form method="POST" action="{{ route('submit-fsktms') }}" class="max-w-sm mx-auto m-4">
+        @csrf
         <div class="mx-auto max-w-2xl text-center">
             <p class="mt-2 text-lg leading-10 text-gray-800">Data Orang Tua/Wali</p>
         </div>
         <div class="mb-5">
             <label for="nama_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama Orang
                 Tua/Wali</label>
-            <input type="text" id="nama_ortu"
+            <input type="text" id="nama_ortu" name="nama_ortu"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="no_ktp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">NIK</label>
-            <input type="text" id="no_ktp"
+            <label for="no_ktp_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">NIK</label>
+            <input type="text" id="no_ktp_ortu" name="no_ktp_ortu"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tempat
+            <label for="tempat_lahir_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tempat
                 Lahir</label>
-            <input type="text" id="tempat_lahir"
+            <input type="text" id="tempat_lahir_ortu" name="tempat_lahir_ortu"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal
+            <label for="tgl_lahir_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal
                 Lahir</label>
-            <input type="date" id="tgl"
+            <input type="date" id="tgl_lahir_ortu" name="tgl_lahir_ortu"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+            <label for="gender_ortu" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                 Kelamin</label>
-            <select id="gender"
+            <select id="gender_ortu" name="gender_ortu"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option>Laki-laki</option>
                 <option>Perempuan</option>
@@ -58,20 +59,21 @@
         </div>
         <div class="mb-5">
             <label for="job" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Pekerjaan</label>
-            <input type="text" id="job"
+            <input type="text" id="job" name="job"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
             <label for="jumlah_saudara" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Jumlah
                 saudara</label>
-            <input type="number" id="jumlah_saudara"
+            <input type="number" id="jumlah_saudara" name="jumlah_saudara"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="religion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-            <select id="religion"
+            <label for="religion_ortu"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
+            <select id="religion_ortu" name="religion_ortu"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 <option>Islam</option>
@@ -85,7 +87,7 @@
         <div class="mb-5">
             <label for="alamat_lengkap" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Alamat
                 Lengkap</label>
-            <input type="text" id="alamat_lengkap"
+            <input type="text" id="alamat_lengkap" name="alamat_lengkap"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
@@ -96,42 +98,43 @@
         <div class="mb-5">
             <label for="nama_anak" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama
                 Anak</label>
-            <input type="text" id="nama_anak"
+            <input type="text" id="nama_anak" name="nama_anak"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="no_ktp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">NIK</label>
-            <input type="text" id="no_ktp"
+            <label for="no_ktp_anak" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">NIK</label>
+            <input type="text" id="no_ktp_anak" name="no_ktp_anak"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="tempat_lahir" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tempat
+            <label for="tempat_lahir_anak" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tempat
                 Lahir</label>
-            <input type="text" id="tempat_lahir"
+            <input type="text" id="tempat_lahir_anak" name="tempat_lahir_anak"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal
+            <label for="tgl_lahir_anak" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal
                 Lahir</label>
-            <input type="date" id="tgl"
+            <input type="date" id="tgl_lahir_anak" name="tgl_lahir_anak"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 placeholder="" required />
         </div>
         <div class="mb-5">
-            <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
+            <label for="gender_anak" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                 Kelamin</label>
-            <select id="gender"
+            <select id="gender_anak" name="gender_anak"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option>Laki-laki</option>
                 <option>Perempuan</option>
             </select>
         </div>
         <div class="mb-5">
-            <label for="religion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
-            <select id="religion"
+            <label for="religion_anak"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Agama</label>
+            <select id="religion_anak" name="religion_anak"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                 <option>Islam</option>

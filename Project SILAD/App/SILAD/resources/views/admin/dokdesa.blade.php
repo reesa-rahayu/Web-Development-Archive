@@ -1,9 +1,4 @@
 <x-admin-layout>
-    <a href="{{ url('/tambahdokdesa') }}" class="inline-block p-6">
-        <button
-            class="text-white bg-green-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-            type="submit">Tambahkan Dokumen</button>
-    </a>
     <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">

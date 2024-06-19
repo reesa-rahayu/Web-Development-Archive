@@ -11,12 +11,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FSKUController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CetakController;
+use App\Http\Controllers\LihatController;
+use App\Http\Controllers\FSKTMsController;
 use App\Http\Controllers\ConfirmController;
 use App\Http\Controllers\FSKUController as ControllersFSKUController;
-use App\Http\Controllers\LihatController;
+use App\Http\Controllers\TolakController;
 
 Route::view('/', 'home');
 
@@ -27,50 +30,15 @@ Route::view('layanan/umum', 'layanan_umum.dashboard');
 //     return view('layanan_umum.fSKU', ['title' => 'Formulir SKU', 'info' => $user]);
 // })->middleware(['auth', 'verified'])->name('SKU');
 
-// Route to show the form
 Route::get('/fSKU', [FSKUController::class, 'index'])
     ->middleware(['auth', 'verified']);
-
-// Route to submit the form
 Route::post('/submit-fsku', [FSKUController::class, 'submitForm'])->name('submit-fsku');
 
-Route::get('/fSKBI', function (User $user) {
-    return view('layanan_umum.fSKBI', ['title' => 'Formulir SKBI', 'info' => $user]);
-})->middleware(['auth', 'verified'])->name('SKBI');
+Route::get('/fSKTMs', [FSKTMsController::class, 'index'])
+    ->middleware(['auth', 'verified']);
+Route::post('/submit-fsktms', [FSKTMsController::class, 'submitForm'])->name('submit-fsktms');
 
-Route::view('/fSKD', 'layanan_umum.fSKD')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKD');
-
-Route::view('/fSKPD', 'layanan_umum.fSKPD')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKPD');
-
-Route::view('/fSKCK', 'layanan_umum.fSKCK')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKPD');
-
-Route::view('/fSKPOT', 'layanan_umum.fSKPOT')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKPOT');
-
-Route::view('/fSKTMs', 'layanan_umum.fSKTMs')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKTMs');
-
-Route::view('/fSKTMu', 'layanan_umum.fSKTMu')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKTMu');
-
-Route::view('/fSKTU', 'layanan_umum.fSKTU')
-    ->middleware(['auth', 'verified'])
-    ->name('fSKTU');
-
-Route::view('/PIKP', 'layanan_umum.PIKP')
-    ->middleware(['auth', 'verified'])
-    ->name('PIKP');
-
-//layanan umum
+//layanan penduduk
 Route::view('layanan/kependudukan', 'layanan_penduduk.dashboard');
 
 Route::view('/fAW', 'layanan_penduduk.fAW')
@@ -117,6 +85,7 @@ Route::view('/fRTMS', 'layanan_penduduk.fRTMS')
     ->middleware(['auth', 'verified'])
     ->name('fRTMS');
 
+//FAQ
 Route::get('/FAQ', function () {
     return view('faq.FAQ', ['faqs' => Pertanyaan::all()]);
 });
@@ -124,15 +93,22 @@ Route::get('/FAQ', function () {
 Route::view('/FAQ/ajukan', 'FAQ.ajukanPertanyaan')
     ->middleware(['auth', 'verified']);
 
+//DASHBOARD
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::post('/dashboard/update', [UserController::class, 'updateData'])->name('update-data');
 
-Route::view('/form/FSKU', 'form.FSKU');
+Route::view('dashboard/gantisandi', 'user_profile.usergantisandi')
+    ->middleware(['auth', 'verified']);
+
+Route::get('dashboard/document/', function () {
+    return view('user_profile.userdokumen', ['ajuans' => Pengajuan::where('pemohon_id',  auth()->user()->id)->get()]);
+})->middleware(['auth', 'verified'])->name('userdocument');
+// Route::view('profile', 'profile')
+//     ->middleware(['auth'])
+//     ->name('profile');
 
 //test login
 // Route::middleware(['admin'])->group(function () {
@@ -170,7 +146,6 @@ Route::get('admin/dashboard', function () {
     return view('admin.dashboard', ['title' => 'Dashboard']);
 });
 
-
 Route::get('admin/surat/ajuan', function () {
     return view('admin.ajuansurat', ['title' => 'Ajuan Surat', 'ajuans' => Pengajuan::where('status', 0)->get()]);
 });
@@ -182,8 +157,14 @@ Route::get('admin/surat/ajuan/{ajuan:id}/konfirmasi', function (Pengajuan $ajuan
 });
 Route::get('admin/surat/ajuan/{ajuan:id}/konfirmasi', [ConfirmController::class, 'confirmSurat'])->name('comfirm-surat');
 
+Route::get('admin/surat/ajuan/{ajuan:id}/tolak', [TolakController::class, 'tolakSurat'])->name('tolak-surat');
+
 Route::get('/admin/surat/arsip/cetak/{surat:id}', [CetakController::class, 'cetakSurat'])->name('cetak-surat');
 Route::get('/admin/surat/arsip/lihat/{surat:id}', [LihatController::class, 'lihatSurat'])->name('lihat-surat');
+
+
+Route::get('/dashboard/dokumen/cetak/{surat:id}', [CetakController::class, 'cetakSuratUser'])->name('cetak-surat-user');
+Route::get('/dashboard/dokumen/lihat/{surat:id}', [LihatController::class, 'lihatSuratUser'])->name('lihat-surat-user');
 
 Route::get('admin/surat/arsip', function () {
     return view('admin.suratselesai', ['title' => 'Arsip Surat', 'surats' => Surat::all()]);
@@ -208,9 +189,11 @@ Route::get('admin/users', function () {
     return view('admin.kelolauser', ['title' => 'Kelola User', 'users' => User::all()]);
 });
 
+
 //dummy test
 Route::view('/logg', 'admin._login');
 Route::view('/regg', '_register');
+Route::view('/FKTMs', 'form.FSKTMs');
 
 
 require __DIR__ . '/auth.php';

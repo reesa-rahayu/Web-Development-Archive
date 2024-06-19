@@ -35,6 +35,6 @@ class FSKUController extends Controller
             ]),
         ]);
         // Contoh simpan file PDF ke storage
-        return redirect()->route('dashboard');
+        return redirect()->route('userdocument');
     }
 }
