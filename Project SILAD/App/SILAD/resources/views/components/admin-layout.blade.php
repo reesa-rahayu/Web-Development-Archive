@@ -78,15 +78,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
         integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
 
+    <?php
+    use App\Models\Pengajuan;
+    $count_sku = count(Pengajuan::where('category_id', 1)->get());
+    $count_sktu = count(Pengajuan::where('category_id', 2)->get());
+    $count_sktms = count(Pengajuan::where('category_id', 3)->get());
+    $count_sktmu = count(Pengajuan::where('category_id', 4)->get());
+    $count_pktp = count(Pengajuan::where('category_id', 10)->get());
+    $count_skd = count(Pengajuan::where('category_id', 11)->get());
+    ?>
     <script>
         var chartOne = document.getElementById('chartOne');
         var myChart = new Chart(chartOne, {
             type: 'bar',
             data: {
-                labels: ['SKU', 'SKAW', 'SKBI', 'SKTM', 'SKD', 'SP'],
+                labels: ['SKU', 'SKTU', 'SKTMs', 'SKTMu', 'PKTP', 'SKD'],
                 datasets: [{
                     label: 'Jumlah Pengajuan',
-                    data: [1, 0, 0, 0, 0, 0],
+                    data: [<?php echo $count_sku; ?>, <?php echo $count_sktu; ?>, <?php echo $count_sktms; ?>,
+                        <?php echo $count_sktmu; ?>, <?php echo $count_pktp; ?>, <?php echo $count_skd; ?>
+                    ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -116,15 +127,27 @@
                 }
             }
         });
-
+    </script>
+    <?php
+    $sku_selesai = count(Pengajuan::where('category_id', 1)->where('status', 1)->get());
+    $sktu_selesai = count(Pengajuan::where('category_id', 2)->where('status', 1)->get());
+    $sktms_selesai = count(Pengajuan::where('category_id', 3)->where('status', 1)->get());
+    $sktmu_selesai = count(Pengajuan::where('category_id', 4)->where('status', 1)->get());
+    $pktp_selesai = count(Pengajuan::where('category_id', 10)->where('status', 1)->get());
+    $skd_selesai = count(Pengajuan::where('category_id', 11)->where('status', 1)->get());
+    
+    ?>
+    <script>
         var chartTwo = document.getElementById('chartTwo');
         var myLineChart = new Chart(chartTwo, {
             type: 'line',
             data: {
-                labels: ['SKU', 'SKAW', 'SKBI', 'SKTM', 'SKD', 'SP'],
+                labels: ['SKU', 'SKTU', 'SKTMs', 'SKTMu', 'PKTP', 'SKD'],
                 datasets: [{
                     label: 'Jumlah Pengajuan',
-                    data: [1, 0, 0, 0, 0, 0],
+                    data: [<?php echo $sku_selesai; ?>, <?php echo $sktu_selesai; ?>, <?php echo $sktms_selesai; ?>,
+                        <?php echo $sktmu_selesai; ?>, <?php echo $pktp_selesai; ?>, <?php echo $skd_selesai; ?>
+                    ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
