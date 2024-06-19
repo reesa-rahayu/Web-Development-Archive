@@ -131,7 +131,7 @@
                         </div>
             </section>
 
-            <section class="bg-gray-50 dark:bg-gray-900 dark:bg-gray-800">
+            <section class="bg-gray-50 dark:bg-gray-800">
                 <section class="text-gray-400 bg-gray-900 body-font">
                     <div class="container px-5 py-24 mx-auto">
                         <div class="flex flex-col">

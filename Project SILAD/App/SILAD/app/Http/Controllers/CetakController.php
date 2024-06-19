@@ -50,13 +50,13 @@ class CetakController extends Controller
         $dompdf = new Dompdf($pdfOptions);
 
         // Fetch the view content
-        if ($surat->category_id == 1) {
+        if ($surat->category_id = 1) {
             $html = View::make('form.FSKU', ['ajuan' => $ajuan, 'no_surat' => $surat->nomor])->render();
-        } else if ($surat->category_id == 3) {
+        } else if ($surat->category_id = 3) {
             $html = View::make('form.FSKTMs', ['ajuan' => $ajuan, 'no_surat' => $surat->nomor])->render();
         }
 
-        $dompdf->loadHtml($html);
+        $dompdf->loadhtml($html);
 
         // (Optional) Set paper size and orientation
         $dompdf->setPaper('A4', 'portrait');
