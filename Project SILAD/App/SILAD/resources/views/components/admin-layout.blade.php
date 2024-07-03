@@ -20,11 +20,11 @@
         }
 
         .bg-sidebar {
-            background: #3b5d50;
+            background: rgb(31, 41, 55);
         }
 
         .bg-header {
-            background: #f9bf29;
+            background: #1c2272;
         }
 
         .cta-btn {
@@ -32,7 +32,7 @@
         }
 
         .upgrade-btn {
-            background: #f9bf29;
+            background: #1c2272;
         }
 
         .upgrade-btn:hover {
@@ -40,11 +40,11 @@
         }
 
         .active-nav-link {
-            background: #f9bf29;
+            background: #1c2272;
         }
 
         .nav-item:hover {
-            background: #f9bf29;
+            background: #1c2272;
         }
 
         .account-link:hover {
